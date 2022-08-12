@@ -1,5 +1,8 @@
+$main-color: blanchedalmond;
+$button-hover: rgb(218, 216, 216);
+
 .app {
-  background-color: blanchedalmond;
+  background-color: $main-color;
 }
 
 .form {
@@ -24,7 +27,7 @@
   }
 
   button:hover {
-    background-color: rgb(196, 196, 196);
+    background-color: $button-hover;
   }
 
 }
@@ -56,7 +59,7 @@
     }
 
     button:hover {
-      background-color: rgb(218, 216, 216);
+      background-color: $button-hover;
     }
 
     .imhere {
@@ -73,4 +76,66 @@
 
 .settings {
   display: flex;
+  flex-direction: column;
+
+  // align-items: center;
+  .downloadJSON {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: $main-color;
+
+    button {
+      margin: 3%;
+      width: 40%;
+      height: 100px;
+      background-color: white;
+      border: 0px;
+      border-radius: 10px;
+      font-size: 28px;
+    }
+
+    button:hover {
+      background-color: $button-hover;
+    }
+  }
+
+  .set-new-json {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $main-color;
+    border-top: 2px black dashed;
+
+    .json-fields {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        width: 40%;
+        height: 100px;
+        background-color: white;
+        font-size: 28px;
+        margin: 3%;
+        cursor: pointer;
+
+        input {
+          display: none;
+        }
+      }
+      label:hover{
+        background-color: $button-hover;
+      }
+
+
+
+
+    }
+  }
 }

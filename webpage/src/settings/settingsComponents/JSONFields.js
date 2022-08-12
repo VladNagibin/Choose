@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Field from './Field'
 
-export default function JSONFields({ fields,saveNewFields}) {
+export default function JSONFields({ fields}) {
     function drawTable() {
         if (fields.length > 0) {
             return (<table>
@@ -15,7 +15,7 @@ export default function JSONFields({ fields,saveNewFields}) {
                 </thead>
                 <tbody>
                 {fields.map(field => {
-                    return <Field key={field.id} field={field} saveNewFields={saveNewFields} />
+                    return <Field key={field.id} field={field} />
                 })}
                 </tbody>
             </table>)

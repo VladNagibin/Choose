@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Field({field,saveNewFields}) {
+export default function Field({field}) {
     // console.log(field.name)
     
     return (

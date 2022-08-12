@@ -21,7 +21,7 @@
   background-color: white;
 }
 .form button:hover {
-  background-color: rgb(196, 196, 196);
+  background-color: rgb(218, 216, 216);
 }
 
 .shops {
@@ -61,4 +61,54 @@
 
 .settings {
   display: flex;
+  flex-direction: column;
+}
+.settings .downloadJSON {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: blanchedalmond;
+}
+.settings .downloadJSON button {
+  margin: 3%;
+  width: 40%;
+  height: 100px;
+  background-color: white;
+  border: 0px;
+  border-radius: 10px;
+  font-size: 28px;
+}
+.settings .downloadJSON button:hover {
+  background-color: rgb(218, 216, 216);
+}
+.settings .set-new-json {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: blanchedalmond;
+  border-top: 2px black dashed;
+}
+.settings .set-new-json .json-fields {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.settings .set-new-json .json-fields label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  width: 40%;
+  height: 100px;
+  background-color: white;
+  font-size: 28px;
+  margin: 3%;
+  cursor: pointer;
+}
+.settings .set-new-json .json-fields label input {
+  display: none;
+}
+.settings .set-new-json .json-fields label:hover {
+  background-color: rgb(218, 216, 216);
 }

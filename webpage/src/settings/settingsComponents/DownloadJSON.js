@@ -13,7 +13,7 @@ export default function DownloadJSON() {
     // console.log(typeof(data))
   }
   return (
-    <div>
+    <div className='downloadJSON'>
       <button onClick={downloadJSON}>Скачать JSON</button>
     </div>
   )
