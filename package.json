@@ -1,0 +1,26 @@
+{
+  "name": "webpage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production node index",
+    "server": "nodemon index.js --ignore client",
+    "client": "npm run start --prefix webpage",
+    "client:install": "npm install --prefix webpage",
+    "client:build": "npm run build --prefix webpage",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Nagibin Vladislav",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.3.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.19"
+  }
+}
