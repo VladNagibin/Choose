@@ -1,38 +1,38 @@
 import React, { useState } from 'react'
 
-export default function Shop({ shopData, regInShop, declineShop}) {
+export default function Shop({ cardData, regInCard, declineCard,fields}) {
     const [chosed, setChosed] = useState(false)
-    const [shop, setShop] = useState(shopData)
-    async function sendShop() {
-        var success = await regInShop(shop)
+    const [card, setCard] = useState(cardData)
+    async function send() {
+        var success = await regInCard(card)
         setChosed(success)
-        setShop({ ...shop, freePlaces: shop.freePlaces - 1 })
+        setCard({ ...card, freePlaces: card.freePlaces - 1 })
     }
-    function unChoseShop(){
-        declineShop(shop)
+    function unChose(){
+        declineCard(card)
         setChosed(false)
-        setShop({ ...shop, freePlaces: shop.freePlaces + 1 })
+        setCard({ ...card, freePlaces: card.freePlaces + 1 })
     }
     function buttonType() {
         if (chosed) {
-            return <div className='imhere' onClick={unChoseShop}>Я тут</div>
+            return <div className='imhere' onClick={unChose}>Я тут</div>
         } else {
-            return <button onClick={sendShop}>Я сюда</button>
+            return <button onClick={send}>Я сюда</button>
         }
     }
-    function drawShop() {
-        if (shopData.freePlaces == 0) {
+    function draw() {
+        if (cardData.freePlaces == 0) {
             return <></>
         } else {
             return (<div className='shop'>
-                <div>{shop.name}</div>
-                <div>Осталось мест: {shop.freePlaces}</div>
+                <div>{card.name}</div>
+                <div>Осталось мест: {card.freePlaces}</div>
                 {buttonType()}
             </div>)
         }
     }
     return (
-        drawShop()
+        draw()
     
   )
 }

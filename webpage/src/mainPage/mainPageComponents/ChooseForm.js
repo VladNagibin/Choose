@@ -1,20 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-export default function ChooseForm({ acceptShops }) {
-    const [form, setform] = useState({
-        fio: '',
-        phone: ''
-    })
+export default function ChooseForm({ acceptShops,userFields }) {
+    const [form, setform] = useState({})
+    function setFormFields(){
+        var newForm = {}
+        userFields.forEach(field=>{
+            newForm[field.name] = null
+        })
+        setform(newForm)
+    }
     function apply() {
         acceptShops(form)
     }
     const formHandler = (event) => {
         setform({ ...form, [event.target.name]: event.target.value })
     }
+    useEffect(()=>{
+        setFormFields()
+    },[])
     return (
         <div className='form'>
-            <input type='text' placeholder='ФИО' name='fio' value={form.fio} onChange={formHandler}></input>
-            <input type='text' placeholder='Телефон' name='phone' value={form.phone} onChange={formHandler}></input>
+            {
+                userFields.map(field=>{
+                    return <input type={field.type} placeholder={field.header} name={field.name} value={form[field.name]} onChange={formHandler}></input>
+                })
+            }
             <button onClick={apply}>Подтвердить</button>
         </div>
     )

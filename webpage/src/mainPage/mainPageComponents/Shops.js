@@ -1,11 +1,11 @@
 import React from 'react'
 import Shop from './Shop'
 
-export default function Shops({shops,setShop,declineShop}) {
+export default function Shops({cards,setCard,declineCard,fields}) {
   return (
     <div className='shops'>{
-        shops.map(element => {
-        return <Shop key = {element.id} shopData={element} regInShop={setShop} declineShop={declineShop}/>
+        cards.map(element => {
+        return <Shop key = {element.id} cardData={element} regInCard={setCard} declineCard={declineCard} fields={fields}/>
       })}</div>
   )
 }

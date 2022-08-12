@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import JSONFields from './JSONFields'
 import { v4 as uuidv4 } from 'uuid';
 import UserFields from './UserFields';
+import { useHttp } from '../../hooks/http.hook';
 export default function SetNewJSON() {
+  const {request} = useHttp()
   const [data, SetData] = useState({})
   const [fields, SetFields] = useState([])
   const [userFields, SetUserFields] = useState([])
@@ -27,7 +29,7 @@ export default function SetNewJSON() {
     }
     reader.readAsText(file)
   }
-  function saveNewFields() {
+  function getFields() {
     var fieldSettings = []
     fields.forEach(field => {
       var tr = document.getElementById(field.id)
@@ -41,6 +43,7 @@ export default function SetNewJSON() {
       })
 
     })
+    return fieldSettings
     // SetFieldSettings(fieldSettings)
   }
 
@@ -79,35 +82,65 @@ export default function SetNewJSON() {
     userFieldTypeRef.current.value = ''
   }
   function deleteUserField(id) {
-    console.log('cock')
+    var newUserFields = [...userFields]
+    var index = userFields.findIndex(el=>el.id = id)
+    SetUserFields([...newUserFields.slice(0,index),...newUserFields.slice(index+1)])
+  }
+  async function CreateNewTable(){
+    var data = await request('/settings/saveSettings','POST',{
+      fields:getFields(),
+      userFields,
+      settings:form
+    })
+    if (!data.success){
+      alert('Error')
+    }
+
+  }
+  function drawSettings() {
+    if (data.length > 0) {
+      return (
+        <>
+          <div className='user-fields'>
+            <h1>Добавьте поля для пользователей</h1>
+            <input ref={userFieldNameRef} placeholder='Имя' type='text' />
+            <select ref={userFieldTypeRef} >
+              {/* <option disabled>Тип данных</option> */}
+              <option value='text'>Текст</option>
+              <option value='number'>Число</option>
+              <option value='data'>Дата</option>
+              <option value='checkbox'>Чек бокс</option>
+              <option value='email'>email</option>
+              <option value='color'>Цвет</option>  
+            </select>
+            {/* <input ref={userFieldTypeRef} placeholder='Тип данных' type='text' /> */}
+            <button onClick={handleAddUserField}>Добавить</button>
+            <UserFields userFields={userFields} deleteUserField={deleteUserField} />
+          </div>
+          <div className='last-settings'>
+            <h1>Общие настройки</h1>
+            <input name='name' type='text' placeholder='Имя таблицы' value={form.name} onChange={formHandler} />
+            <input name='description' type='text' placeholder='Описание таблицы' value={form.description} onChange={formHandler} />
+            <input name='toChoose' type='number' value={form.toChoose} onChange={formHandler} />
+          </div>
+          <button className='createNewTable' onClick={CreateNewTable}>Создать новую таблицу</button>
+        </>
+      )
+    } else {
+      return <></>
+    }
   }
   return (
     <div className='set-new-json'>
       <div className='json-fields'>
-          <label htmlFor='json'>
-            Загрузить новый JSON
-            <input id='json' type='file' onChange={handleJSONChange} placeholder={"Выберите файл"}></input>
-          </label>
+        <label htmlFor='json'>
+          Загрузить новый JSON
+          <input id='json' type='file' onChange={handleJSONChange} placeholder={"Выберите файл"}></input>
+        </label>
 
         <JSONFields fields={fields} />
       </div>
-      <div className='user-fields'>
-        <input ref={userFieldNameRef} type='text' />
-        <input ref={userFieldTypeRef} type='text' />
-        <button onClick={handleAddUserField}>Добавить</button>
-        <UserFields userFields={userFields} deleteUserField={deleteUserField} />
-      </div>
-      <div className='last-settings'>
-        <input name='name' type='text' value={form.name} onChange={formHandler} />
-        <input name='description' type='text' value={form.description} onChange={formHandler} />
-        <input name='toChoose' type='number' value={form.toChoose} onChange={formHandler} />
-
-      </div>
-      {/* <button onClick={saveNewFields}>Сохранить</button> */}
-      <div>
-        {/* <button onClick={saveSettings}>Сохранить</button> */}
-
-      </div>
+      {drawSettings()}
     </div>
   )
 }

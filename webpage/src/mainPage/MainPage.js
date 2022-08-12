@@ -6,28 +6,39 @@ import Shops from './mainPageComponents/Shops';
 
 export default function MainPage() {
   const { loading, request, error, CleanErrors } = useHttp()
-  const [selectedShops, setselectedShops] = useState([])
-  const [availableShops, setAvailableShops] = useState([])
-  
-  function selectShop(shop) {
+  const [selected, setSelected] = useState([])
+  const [available, setAvailable] = useState([])
+  const [settings, setSettings] = useState({
+    fields:[],
+    userFields:[],
+    settings:{}
+  })
+
+  function select(card) {
     // alert(event.target.name)
-    var newShops = selectedShops
-    newShops.push(shop.id)
-    setselectedShops(newShops)
+    var newCards = selected
+    newCards.push(card.id)
+    setSelected(newCards)
     return true
   }
-  function declineShop(shop) {
-    var Index = selectedShops.findIndex(el => el == shop.id)
-    var newShops = [...selectedShops.slice(0, Index), ...selectedShops.slice(Index + 1)]
-    setselectedShops(newShops)
-    console.log(newShops)
+  function decline(card) {
+    var Index = selected.findIndex(el => el == card.id)
+    var newCards = [...selected.slice(0, Index), ...selected.slice(Index + 1)]
+    setSelected(newCards)
+    console.log(newCards)
   }
   async function getData() {
     var data = await request('/choose/getData', 'GET')
     // console.log(typeof(data))
-    setAvailableShops(JSON.parse(data))
+    setAvailable(JSON.parse(data))
   }
-  async function acceptShops(form) {
+  async function getSettings() {
+    var data = await request('/settings/getSettings', 'GET')
+    // console.log(typeof(data))
+    setSettings(JSON.parse(data))
+  }
+
+  async function accept(form) {
     if (form.fio == "" || form.phone == "") {
       alert("Заполните данные о себе")
       return false
@@ -37,7 +48,7 @@ export default function MainPage() {
     headers['Content-type'] = 'application/json'
     try {
       var data = await request('/choose/chooseMag', 'POST', JSON.stringify({
-        shopIds: selectedShops,
+        shopIds: selected,
         user: form
       }))
     } catch (e) {
@@ -49,17 +60,18 @@ export default function MainPage() {
       return false
     }
     getData()
-    alert("Магазины выбраны, спасибо за участие")
+    alert("Cпасибо за участие")
     return true
   }
   useEffect(() => {
     getData()
+    getSettings()
   }, [])
 
   return (
     <div className='app'>
-      <ChooseForm acceptShops={acceptShops}/>
-      <Shops shops={availableShops} setShop={selectShop} declineShop={declineShop} />
+      <ChooseForm acceptShops={accept} userFields = {settings.userFields}/>
+      <Shops cards={available} setCard={select} declineCard={decline} fields = {settings.fields}/>
     </div>
   );
 }

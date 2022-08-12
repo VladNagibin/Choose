@@ -39,11 +39,6 @@ router.post('/chooseMag', (req, res) => {
                     alreadyBusyShops
                 })
             }
-            
-
-            
-
-
         });
 })
 

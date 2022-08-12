@@ -88,6 +88,9 @@
   background-color: blanchedalmond;
   border-top: 2px black dashed;
 }
+.settings .set-new-json h1 {
+  text-align: center;
+}
 .settings .set-new-json .json-fields {
   width: 100%;
   display: flex;
@@ -111,4 +114,13 @@
 }
 .settings .set-new-json .json-fields label:hover {
   background-color: rgb(218, 216, 216);
+}
+.settings .set-new-json .user-fields {
+  margin-top: 30px;
+}
+.settings .set-new-json .user-fields input {
+  margin: 10px;
+}
+.settings .set-new-json .user-fields span {
+  width: 170px;
 }

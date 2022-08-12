@@ -1,0 +1,65 @@
+{
+    "fields": [
+        {
+            "name": "id",
+            "header": "",
+            "show": false,
+            "sort": true
+        },
+        {
+            "name": "name",
+            "header": "Магазин",
+            "show": true,
+            "sort": false
+        },
+        {
+            "name": "lat",
+            "header": "",
+            "show": false,
+            "sort": false
+        },
+        {
+            "name": "lon",
+            "header": "",
+            "show": false,
+            "sort": false
+        },
+        {
+            "name": "city",
+            "header": "Город",
+            "show": true,
+            "sort": false
+        },
+        {
+            "name": "line1",
+            "header": "",
+            "show": false,
+            "sort": false
+        },
+        {
+            "name": "line2",
+            "header": "",
+            "show": false,
+            "sort": false
+        }
+    ],
+    "userFields": [
+        {
+            "id": "50efb707-7959-4c6e-9db7-bba34810037f",
+            "header": "Имя",
+            "name":"name",
+            "type": "text"
+        },
+        {
+            "id": "7e031474-7072-496f-8809-609c7a6597f5",
+            "header": "Телефон",
+            "name":"phone",
+            "type": "number"
+        }
+    ],
+    "settings": {
+        "toChoose": "3",
+        "description": "Выберите 3 магазина",
+        "name": "Магазины"
+    }
+}
