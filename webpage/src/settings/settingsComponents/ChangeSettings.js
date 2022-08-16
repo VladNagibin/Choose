@@ -3,8 +3,8 @@ import JSONFields from './JSONFields'
 import { v4 as uuidv4 } from 'uuid';
 import UserFields from './UserFields';
 import { useHttp } from '../../hooks/http.hook';
-export default function SetNewJSON() {
-  const {request} = useHttp()
+export default function ChangeSettings() {
+  const { request } = useHttp()
   const [data, SetData] = useState({})
   const [fields, SetFields] = useState([])
   const [userFields, SetUserFields] = useState([])
@@ -12,11 +12,12 @@ export default function SetNewJSON() {
     toChoose: 0,
     description: '',
     name: '',
-    maxInCard:0,
-    hideFilled:false
+    maxInCard: 0,
+    hideFilled: false
   })
   const userFieldNameRef = useRef()
   const userFieldTypeRef = useRef()
+  const userFieldHeaderRef = useRef()
 
 
   const handleJSONChange = event => {
@@ -24,7 +25,9 @@ export default function SetNewJSON() {
     let file = event.target.files[0]
     reader.onloadend = () => {
       try {
-        SetData(JSON.parse(reader.result))
+        var newData = JSON.parse(reader.result)
+        SetData(newData)
+        SetFields(getJSONfields(newData))
       } catch {
         alert('Невалидный JSON')
       }
@@ -50,7 +53,22 @@ export default function SetNewJSON() {
     return fieldSettings
     // SetFieldSettings(fieldSettings)
   }
+  function setFieldsData() {
+    console.log(fields)
+    fields.forEach(field => {
+      var tr = document.getElementById(field.id)
+      if (tr) {
+        var tds = tr.getElementsByTagName('td')
+        var inputs = tr.getElementsByTagName('input')
+        tds[0].innerHTML = field.name
+        inputs[0].value = field.header
+        inputs[1].checked = field.show
+        inputs[2].checked = field.sort
+        inputs[3].checked = field.key
+      }
 
+    })
+  }
   function getJSONfields(data) {
     var arr = []
     for (var key in data[0]) {
@@ -62,9 +80,21 @@ export default function SetNewJSON() {
     return arr
 
   }
-  useEffect(() => {
-    SetFields(getJSONfields(data))
-  }, [data])
+
+  async function getData() {
+    var data = await request('/choose/getData', 'GET')
+    // console.log(typeof(data))
+    SetData(JSON.parse(data))
+  }
+  async function getSettings() {
+    var data = await request('/settings/getSettings', 'GET')
+    // console.log(typeof(data))
+    var settings = JSON.parse(data)
+    SetFields(settings.fields)
+    SetUserFields(settings.userFields)
+    SetForm(settings.settings)
+  }
+
 
 
 
@@ -75,34 +105,37 @@ export default function SetNewJSON() {
 
   function handleAddUserField() {
     const name = userFieldNameRef.current.value
+    const header = userFieldHeaderRef.current.value
     const type = userFieldTypeRef.current.value
     if (name == "" || type == "") {
       alert('Заполните оба поля')
       return
     }
     SetUserFields(prevUserFields => {
-      return [...prevUserFields, { id: uuidv4(), name: name, type: type }]
+      return [...prevUserFields, { id: uuidv4(), header: header,name: name, type: type }]
     })
     userFieldNameRef.current.value = ''
     userFieldTypeRef.current.value = ''
+    userFieldHeaderRef.current.value = ''
   }
   function deleteUserField(id) {
     var newUserFields = [...userFields]
-    var index = userFields.findIndex(el=>el.id = id)
-    SetUserFields([...newUserFields.slice(0,index),...newUserFields.slice(index+1)])
+    var index = userFields.findIndex(el => el.id = id)
+    SetUserFields([...newUserFields.slice(0, index), ...newUserFields.slice(index + 1)])
   }
-  function hideFilledHandler(){
-    SetForm({...form,hideFilled:!form.hideFilled})
+  function hideFilledHandler() {
+    SetForm({ ...form, hideFilled: !form.hideFilled })
   }
-  async function CreateNewTable(){
-    var reqData = await request('/settings/createNewtable','POST',{
-      fields:getFields(),
+  async function SaveSettings() {
+    var reqData = await request('/settings/saveSettings', 'POST', {
+      fields: getFields(),
       userFields,
-      settings:form,
-      data
+      settings: form
     })
-    if (!reqData.success){
+    if (!reqData.success) {
       alert('Error')
+    } else {
+      alert('saved!')
     }
 
   }
@@ -113,6 +146,7 @@ export default function SetNewJSON() {
           <div className='user-fields'>
             <h1>Добавьте поля для пользователей</h1>
             <input ref={userFieldNameRef} placeholder='Имя' type='text' />
+            <input ref={userFieldHeaderRef} placeholder='Заголовок' type='text' />
             <select ref={userFieldTypeRef} >
               {/* <option disabled>Тип данных</option> */}
               <option value='text'>Текст</option>
@@ -120,7 +154,7 @@ export default function SetNewJSON() {
               <option value='data'>Дата</option>
               <option value='checkbox'>Чек бокс</option>
               <option value='email'>email</option>
-              <option value='color'>Цвет</option>  
+              <option value='color'>Цвет</option>
             </select>
             {/* <input ref={userFieldTypeRef} placeholder='Тип данных' type='text' /> */}
             <button onClick={handleAddUserField}>Добавить</button>
@@ -129,29 +163,38 @@ export default function SetNewJSON() {
           <div className='last-settings'>
             <h1>Общие настройки</h1>
             <label htmlFor='name'>Имя таблицы
-            <input id = 'name' name='name' type='text' value={form.name} onChange={formHandler} />
+              <input id='name' name='name' type='text' value={form.name} onChange={formHandler} />
             </label>
-            <label htmlFor='name'>Описание
-            <input id = 'description' name='description' type='text' placeholder='Описание таблицы' value={form.description} onChange={formHandler} />
+            <label htmlFor='description'>Описание
+              <input id='description' name='description' type='text' placeholder='Описание таблицы' value={form.description} onChange={formHandler} />
             </label>
-            <label htmlFor='name'>Сколько нужно выбрать(0=бесконечно)
-            <input id = 'toChoose' name='toChoose' type='number' value={form.toChoose} onChange={formHandler} />
+            <label htmlFor='toChoose'>Сколько нужно выбрать(0=бесконечно)
+              <input id='toChoose' name='toChoose' type='number' value={form.toChoose} onChange={formHandler} />
             </label>
             <label htmlFor='maxInCard'>Максимум в одной карточке(0=бесконечно)
               <input id='maxInCard' name='maxInCard' type='number' value={form.maxInCard} onChange={formHandler} />
             </label>
-            <label htmlFor='name'>Скрывать поля с максимальным числом пользователей
-            <input id = 'hideFilled' name='hideFilled' type='checkbox' checked={form.hideFilled} onChange={hideFilledHandler} />
+            <label htmlFor='hideFilled'>Скрывать поля с максимальным числом пользователей
+              <input id='hideFilled' name='hideFilled' type='checkbox' checked={form.hideFilled} onChange={hideFilledHandler} />
             </label>
             {/* <input name='key' type='radio' value={form.toChoose} onChange={formHandler} /> */}
           </div>
-          <button className='createNewTable' onClick={CreateNewTable}>Создать новую таблицу</button>
+          <button className='createNewTable' onClick={SaveSettings}>Сохранить изменения</button>
         </>
       )
     } else {
       return <></>
     }
   }
+
+  useEffect(() => {
+    setFieldsData()
+  }, [fields])
+
+  useEffect(() => {
+    getData()
+    getSettings()
+  }, [])
   return (
     <div className='set-new-json'>
       <div className='json-fields'>

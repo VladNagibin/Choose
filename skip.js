@@ -14,7 +14,15 @@ function setToDefault() {
             }
 
         })
-        result = newData.sort(compare)
+        result = newData.sort((a, b) =>{
+            if (a[field] > b[field]) {
+                return 1
+            }
+            if (a[field] < b[field]) {
+                return -1
+            }
+            return 0
+        })
         fs.writeFileSync("./map.json", JSON.stringify(result))
     })
 
@@ -80,15 +88,7 @@ function getList() {
     })
 }
 
-function compare(a, b) {
-    if (a.code > b.code) {
-        return 1
-    }
-    if (a.code < b.code) {
-        return -1
-    }
-    return 0
-}
+
 function groupBy(arr, fieldName) {
     newarr = arr.reduce((r, a) => {
 

@@ -9,6 +9,7 @@ export default function Field({field}) {
       <td><input type='text' name='header'></input></td>
       <td><input type='checkbox' name='show'></input></td>
       <td><input type='checkbox' name='sort'></input></td>
+      <td><input type='radio' name='key' id='key' value={field.name}></input></td>
     </tr>
   )
 }

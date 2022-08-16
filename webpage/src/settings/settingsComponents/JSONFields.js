@@ -11,6 +11,7 @@ export default function JSONFields({ fields }) {
                         <th>Заголовок</th>
                         <th>Показывать</th>
                         <th>Сортировать</th>
+                        <th>Ключ</th>
                     </tr>
                 </thead>
                 <tbody>

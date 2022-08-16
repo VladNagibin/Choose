@@ -8,27 +8,26 @@ router.get('/getData', (req, res) => {
     })
     
 })
-router.post('/chooseMag', (req, res) => {
-    const { shopIds, user } = req.body
+router.post('/saveCards', (req, res) => {
+    const { Ids, user,keyField } = req.body
     fs.readFile("./map.json", "utf8",
         function (error, data) {
-            //console.log("Асинхронное чтение файла");
             if (error) throw error; // если возникла ошибка
-            var shops = JSON.parse(data)
-            var alreadyBusyShops = []
-            shopIds.forEach(shopId => {
-                var i = shops.findIndex(el => el.id == shopId)
-                if (shops[i].freePlaces < 1) {
-                    alreadyBusyShops.push(shops[i].name)
+            var cards = JSON.parse(data)
+            var filledCards = []
+            Ids.forEach(cardId => {
+                var i = cards.findIndex(el => el[keyField] == cardId)
+                if (cards[i].freePlaces < 1) {
+                    filledCards.push(cards[i])
                 } else {
-                    shops[i].freePlaces = shops[i].freePlaces - 1
-                    shops[i].usersInShop.push(user)
+                    cards[i].freePlaces = cards[i].freePlaces - 1
+                    cards[i].usersInShop.push(user)
                    
                     
                 }
             });
-            if(alreadyBusyShops.length == 0){
-                fs.writeFileSync("./map.json", JSON.stringify(shops))
+            if(filledCards.length == 0){
+                fs.writeFileSync("./map.json", JSON.stringify(cards))
                 res.status(200).json({
                     success: true
                 })
@@ -36,7 +35,7 @@ router.post('/chooseMag', (req, res) => {
                 res.status(301).json({
                     success: false,
                     message: 'Этот магазин уже занят',
-                    alreadyBusyShops
+                    alreadyBusyShops: filledCards
                 })
             }
         });
