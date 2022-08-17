@@ -1,65 +1,81 @@
 {
     "fields": [
         {
+            "id": "bb48d977-462a-4502-9020-1792499141f2",
             "name": "id",
-            "header": "",
-            "show": false,
-            "sort": true
+            "header": "Ид",
+            "show": true,
+            "sort": true,
+            "key": true
         },
         {
+            "id": "19dfb8e8-02c2-4dbb-bee3-b927380de448",
             "name": "name",
             "header": "Магазин",
             "show": true,
-            "sort": false
+            "sort": false,
+            "key": false
         },
         {
+            "id": "dcfc6158-856f-4d98-a729-f8c685fe8f21",
             "name": "lat",
             "header": "",
             "show": false,
-            "sort": false
+            "sort": false,
+            "key": false
         },
         {
+            "id": "37e756cc-726d-4653-b328-7635154353fd",
             "name": "lon",
             "header": "",
             "show": false,
-            "sort": false
+            "sort": false,
+            "key": false
         },
         {
+            "id": "0e586024-190a-424a-86e2-1488568fc578",
             "name": "city",
             "header": "Город",
             "show": true,
-            "sort": false
+            "sort": false,
+            "key": false
         },
         {
+            "id": "0fb2d8f9-4346-4cf3-9957-ee2602c514d3",
             "name": "line1",
             "header": "",
             "show": false,
-            "sort": false
+            "sort": false,
+            "key": false
         },
         {
+            "id": "2f16a017-c1b7-4086-9c95-39340aabce0f",
             "name": "line2",
             "header": "",
             "show": false,
-            "sort": false
+            "sort": false,
+            "key": false
         }
     ],
     "userFields": [
         {
-            "id": "50efb707-7959-4c6e-9db7-bba34810037f",
-            "header": "Имя",
-            "name":"name",
-            "type": "text"
+            "id": "c9bc7701-267c-4315-8f11-aa84db60e68e",
+            "name": "fio",
+            "type": "text",
+            "header":"ФИО"
         },
         {
-            "id": "7e031474-7072-496f-8809-609c7a6597f5",
+            "id": "f1aadead-054e-43b7-9dc3-62ebcd6cae34",
             "header": "Телефон",
-            "name":"phone",
+            "name": "phone",
             "type": "number"
         }
     ],
     "settings": {
-        "toChoose": "3",
-        "description": "Выберите 3 магазина",
-        "name": "Магазины"
+        "toChoose": "4",
+        "description": "Таблица с приколами",
+        "name": "Приколямбы 3.1",
+        "maxInCard": "3",
+        "hideFilled": true
     }
 }

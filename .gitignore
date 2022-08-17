@@ -127,3 +127,4 @@ dist
 .pnp.*
 map.json
 settings.json
+process.env
