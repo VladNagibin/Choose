@@ -4,6 +4,7 @@ import { useRoutes } from './Routes';
 import { BrowserRouter } from 'react-router-dom'
 import { useAuth } from './hooks/auth.hook';
 import { AuthContext } from './context/AuthContext';
+import Header from './header/Header';
 
 function App() {
 
@@ -14,7 +15,9 @@ function App() {
     <AuthContext.Provider value={{
       login, logout, userId, token, isAutheficated
     }}>
+
       <BrowserRouter>
+        <Header />
         <div>
           {routes}
         </div>

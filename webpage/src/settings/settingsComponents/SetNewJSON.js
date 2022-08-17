@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
-import JSONFields from './JSONFields'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import JSONFields from '../../JSONfields/JSONFields'
 import { v4 as uuidv4 } from 'uuid';
-import UserFields from './UserFields';
+import UserFields from '../../userFields/UserFields';
 import { useHttp } from '../../hooks/http.hook';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 export default function SetNewJSON() {
   const {request} = useHttp()
+  const {userId} = useContext(AuthContext)
   const [data, SetData] = useState({})
   const [fields, SetFields] = useState([])
   const [userFields, SetUserFields] = useState([])
@@ -17,7 +20,8 @@ export default function SetNewJSON() {
   })
   const userFieldNameRef = useRef()
   const userFieldTypeRef = useRef()
-
+  const userFieldHeaderRef = useRef()
+  const navigate = useNavigate()
 
   const handleJSONChange = event => {
     let reader = new FileReader()
@@ -75,35 +79,43 @@ export default function SetNewJSON() {
 
   function handleAddUserField() {
     const name = userFieldNameRef.current.value
+    const header = userFieldHeaderRef.current.value
     const type = userFieldTypeRef.current.value
     if (name == "" || type == "") {
       alert('Заполните оба поля')
       return
     }
     SetUserFields(prevUserFields => {
-      return [...prevUserFields, { id: uuidv4(), name: name, type: type }]
+      return [...prevUserFields, { id: uuidv4(), header: header,name: name, type: type }]
     })
     userFieldNameRef.current.value = ''
     userFieldTypeRef.current.value = ''
+    userFieldHeaderRef.current.value = ''
   }
   function deleteUserField(id) {
     var newUserFields = [...userFields]
-    var index = userFields.findIndex(el=>el.id = id)
+    var index = userFields.findIndex(el=>el.id === id)
+    console.log(index)
     SetUserFields([...newUserFields.slice(0,index),...newUserFields.slice(index+1)])
   }
   function hideFilledHandler(){
     SetForm({...form,hideFilled:!form.hideFilled})
   }
   async function CreateNewTable(){
-    var reqData = await request('/settings/createNewtable','POST',{
-      fields:getFields(),
-      userFields,
-      settings:form,
-      data
-    })
-    if (!reqData.success){
-      alert('Error')
+    try{
+      var reqData = await request('/settings/createNewtable','POST',{
+        fields:getFields(),
+        userFields,
+        settings:form,
+        data,
+        userId
+      })
+      navigate('/table/'+reqData.tableId)
+    }catch(e){
+      alert('err')
     }
+    
+
 
   }
   function drawSettings() {
@@ -113,6 +125,7 @@ export default function SetNewJSON() {
           <div className='user-fields'>
             <h1>Добавьте поля для пользователей</h1>
             <input ref={userFieldNameRef} placeholder='Имя' type='text' />
+            <input ref={userFieldHeaderRef} placeholder='Заголовок' type='text' />
             <select ref={userFieldTypeRef} >
               {/* <option disabled>Тип данных</option> */}
               <option value='text'>Текст</option>

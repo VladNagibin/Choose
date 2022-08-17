@@ -1,26 +1,42 @@
 const { Router } = require("express");
 const fs = require('fs')
 const router = Router()
-
+const Table = require('../models/Table')
 router.post('/saveSettings',(req, res) => {
-    const { fields, userFields, settings } = req.body
-    fs.writeFileSync("./settings.json", JSON.stringify({
-        fields,
-        userFields,
-        settings
-    }))
-    res.status(200).json({
-        success: true
+    const { fields, userFields, settings,tableId } = req.body
+    const {userid} = req.headers
+    Table.findById(tableId).then(table=>{
+        if(table.adminId !== userid){
+            res.status(403).json({
+                message:'this user is not an admin of this table'
+            })
+            return
+        }
+        table.fields = fields
+        table.userFields = userFields
+        table.settings = settings
+        table.save().then(result=>{
+            res.status(200).json({
+                message:'success'
+            })
+        },err=>{
+            res.status(501).json({
+                message:'settings saving error',
+                err
+            })
+        })
     })
 })
 
 router.post('/createNewTable', (req, res) => {
-    const { fields, userFields, settings, data } = req.body
-    fs.writeFileSync("./settings.json", JSON.stringify({
-        fields,
-        userFields,
-        settings
-    }))
+    const { fields, userFields, settings, data,userId } = req.body
+    
+    
+    // fs.writeFileSync("./settings.json", JSON.stringify({
+    //     fields,
+    //     userFields,
+    //     settings
+    // }))
     newData = []
     data.forEach(element => {
         if(settings.maxInCard==0){
@@ -51,7 +67,25 @@ router.post('/createNewTable', (req, res) => {
         })
 
     }
-    fs.writeFileSync("./map.json", JSON.stringify(newData))
+    const table = new Table({
+        adminId:userId,
+        data:newData,
+        fields,
+        settings,
+        userFields
+    })
+    table.save().then(result=>{
+        res.status(200).json({
+            message:'success',
+            tableId:result._id.toString()
+        })
+    },err=>{
+        res.status(501).json({
+            message:'table creating fail',
+            err:err
+        })
+    })
+    //fs.writeFileSync("./map.json", JSON.stringify(newData))
 
 })
 

@@ -1,7 +1,7 @@
 {
     "fields": [
         {
-            "id": "bb48d977-462a-4502-9020-1792499141f2",
+            "id": "4467df99-c001-4f57-a9ac-d5b512c2458a",
             "name": "id",
             "header": "Ид",
             "show": true,
@@ -9,15 +9,15 @@
             "key": true
         },
         {
-            "id": "19dfb8e8-02c2-4dbb-bee3-b927380de448",
+            "id": "c58b2581-a714-4861-9264-1ccf785830a2",
             "name": "name",
             "header": "Магазин",
-            "show": true,
+            "show": false,
             "sort": false,
             "key": false
         },
         {
-            "id": "dcfc6158-856f-4d98-a729-f8c685fe8f21",
+            "id": "19eacfb4-8b5f-44c5-b4de-a49eb5a07326",
             "name": "lat",
             "header": "",
             "show": false,
@@ -25,7 +25,7 @@
             "key": false
         },
         {
-            "id": "37e756cc-726d-4653-b328-7635154353fd",
+            "id": "9dd4fd3e-ec04-4eed-8b7a-a2d8e02ce085",
             "name": "lon",
             "header": "",
             "show": false,
@@ -33,49 +33,55 @@
             "key": false
         },
         {
-            "id": "0e586024-190a-424a-86e2-1488568fc578",
+            "id": "2033a0a6-ed3b-4988-a326-1f4604e69c62",
             "name": "city",
-            "header": "Город",
+            "header": "",
+            "show": false,
+            "sort": false,
+            "key": false
+        },
+        {
+            "id": "bc43cd64-d723-4218-a1cc-2971fc8d1079",
+            "name": "line1",
+            "header": "Адрес",
             "show": true,
             "sort": false,
             "key": false
         },
         {
-            "id": "0fb2d8f9-4346-4cf3-9957-ee2602c514d3",
-            "name": "line1",
-            "header": "",
-            "show": false,
-            "sort": false,
-            "key": false
-        },
-        {
-            "id": "2f16a017-c1b7-4086-9c95-39340aabce0f",
+            "id": "51ec4e19-8d90-4ab4-a1ce-63b1b0474e67",
             "name": "line2",
-            "header": "",
-            "show": false,
+            "header": "Режим работы",
+            "show": true,
             "sort": false,
             "key": false
         }
     ],
     "userFields": [
         {
-            "id": "c9bc7701-267c-4315-8f11-aa84db60e68e",
+            "id": "b9d290ad-129c-4c9e-87aa-2df610b4a253",
+            "header": "ФИО",
             "name": "fio",
-            "type": "text",
-            "header":"ФИО"
+            "type": "text"
         },
         {
-            "id": "f1aadead-054e-43b7-9dc3-62ebcd6cae34",
+            "id": "71f5a6cb-3a95-428e-a054-8cbb3adae74e",
             "header": "Телефон",
             "name": "phone",
             "type": "number"
+        },
+        {
+            "id": "d918f993-845d-49bf-9310-97a23a715277",
+            "header": "Почта",
+            "name": "mail",
+            "type": "text"
         }
     ],
     "settings": {
-        "toChoose": "4",
+        "toChoose": "3",
         "description": "Таблица с приколами",
-        "name": "Приколямбы 3.1",
-        "maxInCard": "3",
-        "hideFilled": true
+        "name": "Приколямбы 3.4",
+        "maxInCard": "4",
+        "hideFilled": false
     }
 }
