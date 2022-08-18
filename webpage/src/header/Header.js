@@ -6,19 +6,29 @@ export default function Header() {
     const { isAutheficated, logout } = useContext(AuthContext)
     if (isAutheficated) {
         return (
-            <div>
-                <Link to={'/'}><span className="material-symbols-outlined material-icons">
-                    home
-                </span></Link>
-                <Link to={'/table'}><span className="material-symbols-outlined material-icons">
-                    add
-                </span></Link>
-                <Link to={'/profile'}><span className="material-symbols-outlined material-icons">
-                    account_circle
-                </span></Link>
-                <span className="material-symbols-outlined material-icons" onClick={logout}>
-                    logout
-                </span>
+            <div className='header'>
+
+                <div className='buttons'>
+                    <Link to={'/'}><span className="material-symbols-outlined material-icons">
+                        home
+                    </span></Link>
+                    <Link to={'/table'}><span className="material-symbols-outlined material-icons">
+                        add
+                    </span></Link>
+                </div>
+                <div>
+                    <img className='logo' src='/logo.png' />
+                </div>
+                <div className='buttons'>
+                    <Link to={'/profile'}><span className="material-symbols-outlined material-icons">
+                        account_circle
+                    </span></Link>
+                    <span className="material-symbols-outlined material-icons" onClick={logout}>
+                        logout
+                    </span>
+                </div>
+
+
             </div>)
     } else {
         return (

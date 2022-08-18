@@ -1,8 +1,39 @@
 $main-color: blanchedalmond;
-$button-hover: rgb(218, 216, 216);
-
+$color-2: #af7474;
+$color-3: #8bccd1;
+$button-hover: #875a5a;
+body{
+  margin: 0px;
+}
 .app {
   background-color: $main-color;
+}
+.material-icons{
+  cursor: pointer;
+}
+
+.header{
+  padding-top:5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  .logo{
+    margin-top: 5px;
+  }
+  .material-icons{
+    margin: 10px 10px 0px 10px;
+    font-size: 48px;
+    color: black;
+  }
+  @media (max-width:450px) {
+   .material-icons{
+    font-size: 32px;
+    margin: 10px 5px 0px 5px;
+   } 
+   .logo{
+    max-width: 130px;
+   }
+  }
 }
 
 .form {
@@ -90,7 +121,6 @@ $button-hover: rgb(218, 216, 216);
     justify-content: center;
     width: 100%;
     background-color: $main-color;
-
     button {
       margin: 3%;
       width: 40%;
@@ -111,26 +141,41 @@ $button-hover: rgb(218, 216, 216);
     flex-direction: column;
     align-items: center;
     background-color: $main-color;
-    border-top: 2px black dashed;
+    .format{
+      font-size: 20px;
+      .material-icons{
+        font-size: 15px;
+      }
+    }
     h1{
       text-align: center;
     }
-    .json-fields {
-      width: 100%;
+    .buttons {
+      width: 600px;
       display: flex;
       flex-direction: column;
       align-items: center;
-
+      @media (max-width:700px) {
+        .buttons{
+          width: 100%;
+        }
+      }
+      .format{
+        text-align: right;
+        width: 100%;
+        margin-bottom: 3%;
+      }
       label {
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 10px;
-        width: 40%;
         height: 100px;
-        background-color: white;
+        background-color: $color-2;
+        color: $main-color;
         font-size: 28px;
-        margin: 3%;
+        margin: 3% 3% 0px 3%;
         cursor: pointer;
 
         input {

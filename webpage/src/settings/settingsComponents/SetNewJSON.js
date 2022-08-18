@@ -41,7 +41,7 @@ export default function SetNewJSON() {
     reader.onloadend = () => {
       try {
         SetData(readExcel(reader.result))
-      } catch(e) {
+      } catch (e) {
         console.log(e)
         alert('Невалидный JSON')
       }
@@ -69,18 +69,29 @@ export default function SetNewJSON() {
 
   return (
     <div className='set-new-json'>
-      <div className='json-fields'>
+      <div className='buttons'>
         <label htmlFor='json'>
           Загрузить новый JSON
           <input id='json' type='file' onChange={handleJSONChange} accept='.json' placeholder={"Выберите файл"}></input>
         </label>
+        <div className='format'>
+          формат
+          <span className="material-symbols-outlined material-icons">
+            help
+          </span>
+        </div>
         <label htmlFor='excel'>
           Загрузить новый Excel
           <input id='excel' type='file' onChange={handleExcelChange} accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" placeholder={"Выберите файл"}></input>
         </label>
+        <div className='format'>
+          формат
+          <span className="material-symbols-outlined material-icons">
+            help
+          </span>
+        </div>
 
 
-        
       </div>
       {drawSettings()}
     </div>

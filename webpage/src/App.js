@@ -17,8 +17,9 @@ function App() {
     }}>
 
       <BrowserRouter>
+        
+        <div className='app'>
         <Header />
-        <div>
           {routes}
         </div>
       </BrowserRouter>

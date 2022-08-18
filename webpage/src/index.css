@@ -1,5 +1,37 @@
+body {
+  margin: 0px;
+}
+
 .app {
   background-color: blanchedalmond;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+.header {
+  padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.header .logo {
+  margin-top: 5px;
+}
+.header .material-icons {
+  margin: 10px 10px 0px 10px;
+  font-size: 48px;
+  color: black;
+}
+@media (max-width: 450px) {
+  .header .material-icons {
+    font-size: 32px;
+    margin: 10px 5px 0px 5px;
+  }
+  .header .logo {
+    max-width: 130px;
+  }
 }
 
 .form {
@@ -21,7 +53,7 @@
   background-color: white;
 }
 .form button:hover {
-  background-color: rgb(218, 216, 216);
+  background-color: #875a5a;
 }
 
 .shops {
@@ -56,7 +88,7 @@
   text-align: center;
 }
 .shops .shop button:hover {
-  background-color: rgb(218, 216, 216);
+  background-color: #875a5a;
 }
 
 .settings {
@@ -79,41 +111,57 @@
   font-size: 28px;
 }
 .settings .downloadJSON button:hover {
-  background-color: rgb(218, 216, 216);
+  background-color: #875a5a;
 }
 .settings .set-new-json {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: blanchedalmond;
-  border-top: 2px black dashed;
+}
+.settings .set-new-json .format {
+  font-size: 20px;
+}
+.settings .set-new-json .format .material-icons {
+  font-size: 15px;
 }
 .settings .set-new-json h1 {
   text-align: center;
 }
-.settings .set-new-json .json-fields {
-  width: 100%;
+.settings .set-new-json .buttons {
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.settings .set-new-json .json-fields label {
+@media (max-width: 700px) {
+  .settings .set-new-json .buttons .buttons {
+    width: 100%;
+  }
+}
+.settings .set-new-json .buttons .format {
+  text-align: right;
+  width: 100%;
+  margin-bottom: 3%;
+}
+.settings .set-new-json .buttons label {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  width: 40%;
   height: 100px;
-  background-color: white;
+  background-color: #af7474;
+  color: blanchedalmond;
   font-size: 28px;
-  margin: 3%;
+  margin: 3% 3% 0px 3%;
   cursor: pointer;
 }
-.settings .set-new-json .json-fields label input {
+.settings .set-new-json .buttons label input {
   display: none;
 }
-.settings .set-new-json .json-fields label:hover {
-  background-color: rgb(218, 216, 216);
+.settings .set-new-json .buttons label:hover {
+  background-color: #875a5a;
 }
 .settings .set-new-json .user-fields {
   margin-top: 30px;
