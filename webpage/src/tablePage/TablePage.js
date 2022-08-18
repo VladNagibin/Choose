@@ -10,7 +10,7 @@ import { AuthContext } from '../context/AuthContext';
 export default function TablePage() {
   const { loading, request, error, CleanErrors } = useHttp()
   let navigate = useNavigate()
-  const { userId } = useContext(AuthContext)
+  const { userId,token } = useContext(AuthContext)
   const [selected, setSelected] = useState([])
   const [available, setAvailable] = useState([])
   const [settings, setSettings] = useState({
@@ -103,13 +103,16 @@ export default function TablePage() {
       var reqData = await request('/settings/saveSettings', 'POST', {
         ...newSettings,
         tableId: tableId
-      }, { userId: userId })
+      }, { token:token })
       alert(reqData.message)
+      setSettings(newSettings)
+      return true
     } catch (e) {
       alert(reqData.message)
+      return false
     }
 
-    setSettings(newSettings)
+    
   }
   useEffect(() => {
     getData()
@@ -123,7 +126,7 @@ export default function TablePage() {
         <h1>{settings.settings.description}</h1>
 
       </div>
-      <SettingsPanel settings={settings} settingsHandler={settingsHandler} />
+      <SettingsPanel settings={settings} settingsHandler={settingsHandler} tableId={tableId} />
       <ChooseForm acceptShops={accept} userFields={settings.userFields} />
       {drawCards()}
     </div>

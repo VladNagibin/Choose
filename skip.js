@@ -1,5 +1,5 @@
 const fs = require('fs')
-
+const XLSX = require("xlsx");
 function setToDefault() {
     fs.readFile("./map.json", 'utf-8', (err, data) => {
         newData = []
@@ -101,7 +101,22 @@ function groupBy(arr, fieldName) {
     }, {});
     return newarr
 }
+function writeToExcel(){
+    fs.readFile("./map-def.json", 'utf-8', (err, data) => {
+        const worksheet = XLSX.utils.json_to_sheet(JSON.parse(data));
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
+        XLSX.writeFile(workbook, "data.xlsx");
 
+    })
+}
+function readExcel(){
+    var workbook = XLSX.readFile('data.xlsx',{type:'string'});
+    var data = XLSX.utils.sheet_to_json(workbook.Sheets.Data)
+    console.log(data)
+}
 
 // setToDefault()
-getStats()
+//getStats()
+//writeToExcel()
+readExcel()

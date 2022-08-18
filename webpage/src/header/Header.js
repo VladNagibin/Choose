@@ -7,8 +7,14 @@ export default function Header() {
     if (isAutheficated) {
         return (
             <div>
+                <Link to={'/'}><span className="material-symbols-outlined material-icons">
+                    home
+                </span></Link>
                 <Link to={'/table'}><span className="material-symbols-outlined material-icons">
                     add
+                </span></Link>
+                <Link to={'/profile'}><span className="material-symbols-outlined material-icons">
+                    account_circle
                 </span></Link>
                 <span className="material-symbols-outlined material-icons" onClick={logout}>
                     logout
@@ -17,9 +23,9 @@ export default function Header() {
     } else {
         return (
             <div>
-                {/* <Link to={'/settings'}><span class="material-symbols-outlined material-icons">
-                    settings
-                </span></Link> */}
+                <Link to={'/'}><span className="material-symbols-outlined material-icons">
+                    home
+                </span></Link>
                 <Link to={'/login'}><span className="material-symbols-outlined material-icons">
                     login
                 </span></Link>

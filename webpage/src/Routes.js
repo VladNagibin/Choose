@@ -5,12 +5,14 @@ import LoginPage from './auth/LoginPage'
 import RegistrationPage from './auth/RegistrationPage'
 import NewTablePage from "./settings/NewTablePage";
 import MainPage from "./mainPage/MainPage";
+import ProfilePage from './profile/ProfilePage'
 
 export const useRoutes = isAunteficated => {
     if (isAunteficated) {
         return (   
         <Routes>
             <Route path="/" exact element={<MainPage/>}/>
+            <Route path="/profile" exact element={<ProfilePage/>}/>
             <Route path="/table" exact element={<NewTablePage/>}/>
             <Route path="/table/:id" element={<TablePage/>}/>
             <Route path="*" element={<Navigate replace to="/" />}  />

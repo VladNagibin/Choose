@@ -2,26 +2,35 @@ const { Router } = require("express");
 const fs = require('fs')
 const router = Router()
 const Table = require('../models/Table')
-router.post('/saveSettings',(req, res) => {
-    const { fields, userFields, settings,tableId } = req.body
-    const {userid} = req.headers
-    Table.findById(tableId).then(table=>{
-        if(table.adminId !== userid){
+const jwt = require('jsonwebtoken')
+router.post('/saveSettings', (req, res) => {
+    const { fields, userFields, settings, tableId } = req.body
+    const { token } = req.headers
+    try {
+        var userId = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (e) {
+        res.status(403).json({
+            message:'invalid token'
+        })
+        return
+    }
+    Table.findById(tableId).then(table => {
+        if (table.adminId !== userId) {
             res.status(403).json({
-                message:'this user is not an admin of this table'
+                message: 'this user is not an admin of that table'
             })
             return
         }
         table.fields = fields
         table.userFields = userFields
         table.settings = settings
-        table.save().then(result=>{
+        table.save().then(result => {
             res.status(200).json({
-                message:'success'
+                message: 'success'
             })
-        },err=>{
+        }, err => {
             res.status(501).json({
-                message:'settings saving error',
+                message: 'settings saving error',
                 err
             })
         })
@@ -29,9 +38,9 @@ router.post('/saveSettings',(req, res) => {
 })
 
 router.post('/createNewTable', (req, res) => {
-    const { fields, userFields, settings, data,userId } = req.body
-    
-    
+    const { fields, userFields, settings, data, userId } = req.body
+
+
     // fs.writeFileSync("./settings.json", JSON.stringify({
     //     fields,
     //     userFields,
@@ -39,12 +48,12 @@ router.post('/createNewTable', (req, res) => {
     // }))
     newData = []
     data.forEach(element => {
-        if(settings.maxInCard==0){
+        if (settings.maxInCard == 0) {
             newData.push({
                 ...element,
                 usersInShop: []
             })
-        }else{
+        } else {
             newData.push({
                 ...element,
                 freePlaces: settings.maxInCard,
@@ -68,21 +77,21 @@ router.post('/createNewTable', (req, res) => {
 
     }
     const table = new Table({
-        adminId:userId,
-        data:newData,
+        adminId: userId,
+        data: newData,
         fields,
         settings,
         userFields
     })
-    table.save().then(result=>{
+    table.save().then(result => {
         res.status(200).json({
-            message:'success',
-            tableId:result._id.toString()
+            message: 'success',
+            tableId: result._id.toString()
         })
-    },err=>{
+    }, err => {
         res.status(501).json({
-            message:'table creating fail',
-            err:err
+            message: 'table creating fail',
+            err: err
         })
     })
     //fs.writeFileSync("./map.json", JSON.stringify(newData))
