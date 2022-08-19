@@ -61,11 +61,16 @@ router.get('/getUserData', (req, res) => {
                 return
             }
             Table.find({adminId:userId}).then(tables=>{
-                tableIds = []
+                var tableIds = []
                 tables.forEach(table=>{
+                    var peopleVote = 0
+                    table.data.forEach(elem=>{
+                        peopleVote += elem.usersInShop.length
+                    })
                     tableIds.push({
                         id:table._id,
-                        name:table.settings.name
+                        name:table.settings.name,
+                        peopleVote
                     })
                 })
                 res.status(200).json({

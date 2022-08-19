@@ -4,7 +4,7 @@ import Field from './Field'
 export default function JSONFields({ fields }) {
     function drawTable() {
         if (fields.length > 0) {
-            return (<><h1>Настройте поля карточек</h1><table>
+            return (<div className='fields'><h2>Настройте поля карточек</h2><table>
                 <thead>
                     <tr>
                         <th>Наименование</th>
@@ -19,7 +19,7 @@ export default function JSONFields({ fields }) {
                         return <Field key={field.id} field={field} />
                     })}
                 </tbody>
-            </table></>)
+            </table></div>)
         } else {
             return <></>
         }

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { AuthContext } from '../context/AuthContext'
 
 export default function Header() {
@@ -23,7 +24,10 @@ export default function Header() {
                     <Link to={'/profile'}><span className="material-symbols-outlined material-icons">
                         account_circle
                     </span></Link>
-                    <span className="material-symbols-outlined material-icons" onClick={logout}>
+                    <span className="material-symbols-outlined material-icons" onClick={()=>{
+                        logout()
+                        toast.info('Вы вышли из аккаунта')
+                        }}>
                         logout
                     </span>
                 </div>
@@ -32,16 +36,24 @@ export default function Header() {
             </div>)
     } else {
         return (
-            <div>
-                <Link to={'/'}><span className="material-symbols-outlined material-icons">
-                    home
-                </span></Link>
-                <Link to={'/login'}><span className="material-symbols-outlined material-icons">
-                    login
-                </span></Link>
-                <Link to={'/registration'}><span className="material-symbols-outlined material-icons">
-                    app_registration
-                </span></Link>
+            <div className='header'>
+                <div className='buttons'>
+                    <Link to={'/'}><span className="material-symbols-outlined material-icons">
+                        home
+                    </span></Link>
+                </div>
+                <div>
+                    <img className='logo' src='/logo.png' />
+                </div>
+                <div className='buttons'>
+                    <Link to={'/login'}><span className="material-symbols-outlined material-icons">
+                        login
+                    </span></Link>
+                    <Link to={'/registration'}><span className="material-symbols-outlined material-icons">
+                        app_registration
+                    </span></Link>
+                </div>
+
             </div>)
     }
 }

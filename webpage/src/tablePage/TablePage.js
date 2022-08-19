@@ -6,11 +6,12 @@ import Shops from './tablePageComponents/Shops';
 import Settings from './tablePageComponents/Settings';
 import SettingsPanel from './tablePageComponents/SettingsPanel';
 import { AuthContext } from '../context/AuthContext';
+import { toast } from 'react-toastify';
 
 export default function TablePage() {
   const { loading, request, error, CleanErrors } = useHttp()
   let navigate = useNavigate()
-  const { userId,token } = useContext(AuthContext)
+  const { userId, token } = useContext(AuthContext)
   const [selected, setSelected] = useState([])
   const [available, setAvailable] = useState([])
   const [settings, setSettings] = useState({
@@ -30,7 +31,7 @@ export default function TablePage() {
   function select(card) {
     // alert(event.target.name)
     if (selected.length == settings.settings.toChoose && settings.settings.toChoose != 0) {
-      alert('Вы выбрали достаточно элементов')
+      toast.warn('Вы выбрали достаточно элементов')
       return false
     }
     var newCards = selected
@@ -56,12 +57,18 @@ export default function TablePage() {
   }
 
   async function accept(form) {
-    if (form.fio == "" || form.phone == "") {
-      alert("Заполните данные о себе")
+    var dataIsFilled = true
+    for (var key in form) {
+      if(form[key]==''){
+        dataIsFilled = false
+      }
+    }
+    if (!dataIsFilled) {
+      toast.warn("Заполните данные о себе")
       return false
     }
     if (selected.length < settings.settings.toChoose) {
-      alert("Выберите еще " + (settings.settings.toChoose - selected.length))
+      toast.warn("Выберите еще " + (settings.settings.toChoose - selected.length))
       return false
     }
     //alert(shop.id)
@@ -80,15 +87,15 @@ export default function TablePage() {
         e.alreadyBusyShops.forEach(element => {
           errText = errText + '\n' + element
         })
-        alert(errText)
-      }else{
-        alert('err')
+        toast.error(errText)
+      } else {
+        toast.error(e)
       }
 
       return false
     }
     getData()
-    alert("Cпасибо за участие")
+    toast.success("Cпасибо за участие")
     navigate('/')
     return true
   }
@@ -103,16 +110,16 @@ export default function TablePage() {
       var reqData = await request('/settings/saveSettings', 'POST', {
         ...newSettings,
         tableId: tableId
-      }, { token:token })
-      alert(reqData.message)
+      }, { token: token })
+      toast.success(reqData.message)
       setSettings(newSettings)
       return true
     } catch (e) {
-      alert(reqData.message)
+      toast.error(reqData.message)
       return false
     }
 
-    
+
   }
   useEffect(() => {
     getData()
@@ -120,13 +127,19 @@ export default function TablePage() {
 
   return (
     <div className='app'>
-      <div className='table-name'>
-        <h1>{settings.settings.name}</h1>
-        <h1>Выбери {settings.settings.toChoose == 0 ? 'сколько угодно' : settings.settings.toChoose}</h1>
-        <h1>{settings.settings.description}</h1>
+      <div className='top-panel'>
+        <div className='table-name'>
+          <h1>{settings.settings.name}</h1>
+          <h1>Выбери {settings.settings.toChoose == 0 ? 'сколько угодно' : settings.settings.toChoose}</h1>
+          <h1>{settings.settings.description}</h1>
+
+        </div>
+        <div>
+        {/* <img className='logo' src='/logo-small.png' /> */}
+        </div>
+        <SettingsPanel settings={settings} settingsHandler={settingsHandler} tableId={tableId} />
 
       </div>
-      <SettingsPanel settings={settings} settingsHandler={settingsHandler} tableId={tableId} />
       <ChooseForm acceptShops={accept} userFields={settings.userFields} />
       {drawCards()}
     </div>

@@ -39,9 +39,9 @@ export default function DownloadJSON({ tableId }) {
   }
 
   return (
-    <div className='downloadJSON'>
-      <button onClick={downloadJSON}>Скачать JSON</button>
-      <button onClick={downloadExcel}>Скачать Excel</button>
+    <div className='set-new-json'>
+      <button className='download' onClick={downloadJSON}>Скачать JSON</button>
+      <button className='download' onClick={downloadExcel}>Скачать Excel</button>
     </div>
 
   )

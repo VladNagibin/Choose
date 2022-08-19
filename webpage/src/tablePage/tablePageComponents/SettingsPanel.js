@@ -26,7 +26,7 @@ export default function SettingsPanel({ settings, settingsHandler,tableId }) {
         }
     }
     return (
-        <div>
+        <div className='settings settings-panel'>
             <span onClick={panelHandler} className="material-symbols-outlined material-icons">
                 settings
             </span>

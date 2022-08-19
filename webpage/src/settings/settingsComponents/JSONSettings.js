@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import JSONFields from '../../JSONfields/JSONFields'
 import { v4 as uuidv4 } from 'uuid';
 import UserFields from '../../userFields/UserFields';
 import { useHttp } from '../../hooks/http.hook';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-export default function JSONSettings({ data, fields}) {
+export default function JSONSettings({ data, fields }) {
     const { request } = useHttp()
     const { userId } = useContext(AuthContext)
     const [userFields, SetUserFields] = useState([])
@@ -52,7 +53,7 @@ export default function JSONSettings({ data, fields}) {
         const header = userFieldHeaderRef.current.value
         const type = userFieldTypeRef.current.value
         if (name == "" || type == "") {
-            alert('Заполните оба поля')
+            toast.warn('Заполните оба поля')
             return
         }
         SetUserFields(prevUserFields => {
@@ -65,7 +66,6 @@ export default function JSONSettings({ data, fields}) {
     function deleteUserField(id) {
         var newUserFields = [...userFields]
         var index = userFields.findIndex(el => el.id === id)
-        console.log(index)
         SetUserFields([...newUserFields.slice(0, index), ...newUserFields.slice(index + 1)])
     }
     function hideFilledHandler() {
@@ -82,7 +82,7 @@ export default function JSONSettings({ data, fields}) {
             })
             navigate('/table/' + reqData.tableId)
         } catch (e) {
-            alert('err')
+            toast.error(e)
         }
 
 
@@ -92,12 +92,13 @@ export default function JSONSettings({ data, fields}) {
 
     return (
         <div>
+            <h1>Выберите параметры таблицы</h1>
             <div>
                 <JSONFields fields={fields} />
                 <div className='user-fields'>
-                    <h1>Добавьте поля для пользователей</h1>
-                    <input ref={userFieldNameRef} placeholder='Имя' type='text' />
-                    <input ref={userFieldHeaderRef} placeholder='Заголовок' type='text' />
+                    <h2>Добавьте поля для пользователей</h2>
+                    <input ref={userFieldNameRef} placeholder='Имя' type='text' className='user-field-input' />
+                    <input ref={userFieldHeaderRef} placeholder='Заголовок' className='user-field-input' type='text' />
                     <select ref={userFieldTypeRef} >
                         {/* <option disabled>Тип данных</option> */}
                         <option value='text'>Текст</option>
@@ -108,26 +109,32 @@ export default function JSONSettings({ data, fields}) {
                         <option value='color'>Цвет</option>
                     </select>
                     {/* <input ref={userFieldTypeRef} placeholder='Тип данных' type='text' /> */}
-                    <button onClick={handleAddUserField}>Добавить</button>
+                    <button onClick={handleAddUserField} className='user-field-button'>Добавить</button>
                     <UserFields userFields={userFields} deleteUserField={deleteUserField} />
                 </div>
                 <div className='last-settings'>
-                    <h1>Общие настройки</h1>
-                    <label htmlFor='name'>Имя таблицы
+                    <h2>Общие настройки</h2>
+                    <div>
+                        <label htmlFor='name'>Имя таблицы</label>
                         <input id='name' name='name' type='text' value={form.name} onChange={formHandler} />
-                    </label>
-                    <label htmlFor='name'>Описание
+                    </div>
+                    <div>
+                        <label htmlFor='name'>Описание</label>
                         <input id='description' name='description' type='text' placeholder='Описание таблицы' value={form.description} onChange={formHandler} />
-                    </label>
-                    <label htmlFor='name'>Сколько нужно выбрать(0=бесконечно)
+                    </div>
+                    <div>
+                        <label htmlFor='name'>Сколько нужно выбрать(0=бесконечно)</label>
                         <input id='toChoose' name='toChoose' type='number' value={form.toChoose} onChange={formHandler} />
-                    </label>
-                    <label htmlFor='maxInCard'>Максимум в одной карточке(0=бесконечно)
+                    </div>
+                    <div>
+                        <label htmlFor='maxInCard'>Максимум в одной карточке(0=бесконечно)</label>
                         <input id='maxInCard' name='maxInCard' type='number' value={form.maxInCard} onChange={formHandler} />
-                    </label>
-                    <label htmlFor='name'>Скрывать поля с максимальным числом пользователей
-                        <input id='hideFilled' name='hideFilled' type='checkbox' checked={form.hideFilled} onChange={hideFilledHandler} />
-                    </label>
+                    </div>
+                    <div>
+                        <label htmlFor='name'>Скрывать поля с максимальным числом пользователей</label>
+                        <input id='hideFilled' name='hideFilled' type='checkbox' className='custom-checkbox' checked={form.hideFilled} readOnly /><label htmlFor='hidefilled' onClick={hideFilledHandler}></label>
+                    </div>
+
                     {/* <input name='key' type='radio' value={form.toChoose} onChange={formHandler} /> */}
                 </div>
                 <button className='createNewTable' onClick={CreateNewTable}>Создать новую таблицу</button>

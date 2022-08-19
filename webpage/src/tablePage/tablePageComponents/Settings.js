@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHttp } from '../../hooks/http.hook'
 import { useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import UserFields from '../../userFields/UserFields';
 import JSONFields from '../../JSONfields/JSONFields';
-import { AuthContext } from '../../context/AuthContext';
 export default function Settings({ fields, userFields, settings, settingsHandler }) {
 
     const { request } = useHttp()
-   
+
     const [newFields, SetFields] = useState([])
     const [newUserFields, SetUserFields] = useState([])
     const [form, SetForm] = useState({
@@ -103,9 +102,9 @@ export default function Settings({ fields, userFields, settings, settingsHandler
             return (
                 <>
                     <div className='user-fields'>
-                        <h1>Добавьте поля для пользователей</h1>
-                        <input ref={userFieldNameRef} placeholder='Имя' type='text' />
-                        <input ref={userFieldHeaderRef} placeholder='Заголовок' type='text' />
+                        <h2>Добавьте поля для пользователей</h2>
+                        <input ref={userFieldNameRef} placeholder='Имя' type='text' className='user-field-input' />
+                        <input ref={userFieldHeaderRef} placeholder='Заголовок' type='text' className='user-field-input' />
                         <select ref={userFieldTypeRef} >
                             {/* <option disabled>Тип данных</option> */}
                             <option value='text'>Текст</option>
@@ -116,26 +115,31 @@ export default function Settings({ fields, userFields, settings, settingsHandler
                             <option value='color'>Цвет</option>
                         </select>
                         {/* <input ref={userFieldTypeRef} placeholder='Тип данных' type='text' /> */}
-                        <button onClick={handleAddUserField}>Добавить</button>
+                        <button onClick={handleAddUserField} className='user-field-button'>Добавить</button>
                         <UserFields userFields={newUserFields} deleteUserField={deleteUserField} />
                     </div>
                     <div className='last-settings'>
-                        <h1>Общие настройки</h1>
-                        <label htmlFor='name'>Имя таблицы
+                        <h2>Общие настройки</h2>
+                        <div>
+                            <label htmlFor='name'>Имя таблицы</label>
                             <input id='name' name='name' type='text' value={form.name} onChange={formHandler} />
-                        </label>
-                        <label htmlFor='description'>Описание
+                        </div>
+                        <div>
+                            <label htmlFor='description'>Описание</label>
                             <input id='description' name='description' type='text' placeholder='Описание таблицы' value={form.description} onChange={formHandler} />
-                        </label>
-                        <label htmlFor='toChoose'>Сколько нужно выбрать(0=бесконечно)
+                        </div>
+                        <div>
+                            <label htmlFor='toChoose'>Сколько нужно выбрать(0=бесконечно)</label>
                             <input id='toChoose' name='toChoose' type='number' value={form.toChoose} onChange={formHandler} />
-                        </label>
-                        <label htmlFor='maxInCard'>Максимум в одной карточке(0=бесконечно)
+                        </div>
+                        <div>
+                            <label htmlFor='maxInCard'>Максимум в одной карточке(0=бесконечно)</label>
                             <input id='maxInCard' name='maxInCard' type='number' value={form.maxInCard} onChange={formHandler} />
-                        </label>
-                        <label htmlFor='hideFilled'>Скрывать поля с максимальным числом пользователей
+                        </div>
+                        <div>
+                            <label htmlFor='hideFilled'>Скрывать поля с максимальным числом пользователей</label>
                             <input id='hideFilled' name='hideFilled' type='checkbox' checked={form.hideFilled} onChange={hideFilledHandler} />
-                        </label>
+                        </div>
                         {/* <input name='key' type='radio' value={form.toChoose} onChange={formHandler} /> */}
                     </div>
                     <button className='createNewTable' onClick={SaveSettings}>Сохранить изменения</button>
@@ -156,11 +160,12 @@ export default function Settings({ fields, userFields, settings, settingsHandler
         SetForm(settings)
     }, [fields])
     return (
-        <div className='set-new-json'>
-            <div className='json-fields'>
+        <>
+            <div className='JSONSettings'>
                 <JSONFields fields={newFields} />
+                {drawSettings()}
             </div>
-            {drawSettings()}
-        </div>
+        </>
+
     )
 }

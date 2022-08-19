@@ -1,11 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import JSONFields from '../../JSONfields/JSONFields'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import * as XLSX from 'xlsx/xlsx.mjs';
-import UserFields from '../../userFields/UserFields';
-import { useHttp } from '../../hooks/http.hook';
-import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import JSONSettings from './JSONSettings';
 export default function SetNewJSON() {
   const [data, SetData] = useState({})
@@ -28,8 +24,9 @@ export default function SetNewJSON() {
     reader.onloadend = () => {
       try {
         SetData(JSON.parse(reader.result))
+        toast.success('JSON обработан')
       } catch {
-        alert('Невалидный JSON')
+        toast.error('Невалидный JSON')
       }
     }
     reader.readAsText(file)
@@ -41,9 +38,9 @@ export default function SetNewJSON() {
     reader.onloadend = () => {
       try {
         SetData(readExcel(reader.result))
+        toast.success('Excel обработан')
       } catch (e) {
-        console.log(e)
-        alert('Невалидный JSON')
+        toast.error('Невалидный Excel')
       }
     }
     reader.readAsArrayBuffer(file)
@@ -57,9 +54,16 @@ export default function SetNewJSON() {
 
   function drawSettings() {
     if (fields.length > 0) {
-      return <JSONSettings data={data} fields={fields} />
+      return <div className='JSONSettings'><JSONSettings data={data} fields={fields} /></div>
     } else {
-      return <></>
+      return <div className='JSONSettings'>
+        <h1>Выберите параметры таблицы</h1>
+        <div className='no-data'>
+          <h2>Данных пока нет</h2>
+          <span className="material-symbols-outlined material-icons">
+            mood_bad
+          </span>
+        </div></div>
     }
   }
 
@@ -68,32 +72,33 @@ export default function SetNewJSON() {
   }, [data])
 
   return (
-    <div className='set-new-json'>
-      <div className='buttons'>
-        <label htmlFor='json'>
-          Загрузить новый JSON
-          <input id='json' type='file' onChange={handleJSONChange} accept='.json' placeholder={"Выберите файл"}></input>
-        </label>
-        <div className='format'>
-          формат
-          <span className="material-symbols-outlined material-icons">
-            help
-          </span>
+    <>
+      <div className='set-new-json'>
+        <h1>Загрузите ваши данные</h1>
+        <div className='buttons'>
+          <label htmlFor='json'>
+            Загрузить JSON
+            <input id='json' type='file' onChange={handleJSONChange} accept='.json' placeholder={"Выберите файл"}></input>
+          </label>
+          <div className='format'>
+            формат
+            <span className="material-symbols-outlined material-icons">
+              help
+            </span>
+          </div>
+          <label htmlFor='excel'>
+            Загрузить Excel
+            <input id='excel' type='file' onChange={handleExcelChange} accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" placeholder={"Выберите файл"}></input>
+          </label>
+          <div className='format'>
+            формат
+            <span className="material-symbols-outlined material-icons">
+              help
+            </span>
+          </div>
         </div>
-        <label htmlFor='excel'>
-          Загрузить новый Excel
-          <input id='excel' type='file' onChange={handleExcelChange} accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" placeholder={"Выберите файл"}></input>
-        </label>
-        <div className='format'>
-          формат
-          <span className="material-symbols-outlined material-icons">
-            help
-          </span>
-        </div>
-
-
       </div>
       {drawSettings()}
-    </div>
+    </>
   )
 }

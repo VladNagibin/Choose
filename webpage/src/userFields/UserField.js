@@ -5,11 +5,11 @@ export default function UserField({ field, deleteUserField }) {
         deleteUserField(field.id)
     }
     return (
-        <div>
-            <span>{field.name}</span>
-            <span>{field.header}</span>
-            <span>{field.type}</span>
-            <button onClick={deleteField}>Удалить</button>
+        <div className='user-fields-added'>
+            <div className='user-input'>{field.name}</div>
+            <div className='user-input'>{field.header}</div>
+            <div className='user-type'>{field.type}</div>
+            <button className='user-button' onClick={deleteField}>Удалить</button>
         </div>
     )
 }

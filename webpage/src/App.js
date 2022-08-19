@@ -4,7 +4,9 @@ import { useRoutes } from './Routes';
 import { BrowserRouter } from 'react-router-dom'
 import { useAuth } from './hooks/auth.hook';
 import { AuthContext } from './context/AuthContext';
+import { ToastContainer} from 'react-toastify';
 import Header from './header/Header';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -17,10 +19,11 @@ function App() {
     }}>
 
       <BrowserRouter>
-        
+
         <div className='app'>
-        <Header />
+          <Header />
           {routes}
+          <ToastContainer />
         </div>
       </BrowserRouter>
     </AuthContext.Provider>
