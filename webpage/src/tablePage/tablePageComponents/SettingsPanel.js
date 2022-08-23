@@ -1,6 +1,16 @@
 import React, { useState } from 'react'
 import Settings from './Settings'
 import DownloadJSON from '../../settings/settingsComponents/DownloadJSON'
+import styled, { keyframes } from 'styled-components';
+import { slideInRight } from 'react-animations';
+
+const openAnimation = keyframes`${slideInRight}`;
+ 
+const OpenDiv = styled.div`
+  animation: 0.5s ${openAnimation};
+`;
+
+
 export default function SettingsPanel({ settings, settingsHandler,tableId }) {
     const [showPanel, setShowPanel] = useState(false)
     async function handlerSettings(data) {
@@ -15,11 +25,10 @@ export default function SettingsPanel({ settings, settingsHandler,tableId }) {
     const panelDrawing = () => {
         if (showPanel) {
             return (
-                <>
+                <OpenDiv className='opened-settings'>
                     <DownloadJSON tableId={tableId}/>
                     <Settings fields={settings.fields} userFields={settings.userFields} settings={settings.settings} settingsHandler={handlerSettings} />
-                    
-                </>
+                </OpenDiv>
             )
         } else {
             return <></>

@@ -4,6 +4,7 @@ $color-3: #c8f9fd;
 $button-hover: #875a5a;
 $color-2-light: #b49f9f;
 @import './custom-radio-checkbox.scss';
+@import './loader.scss';
 
 * {
   font-family: 'Roboto';
@@ -11,6 +12,7 @@ $color-2-light: #b49f9f;
 
 body {
   margin: 0px;
+  min-height: 100vh;
 }
 
 .app {
@@ -28,9 +30,17 @@ body {
   justify-content: space-around;
 
   .buttons {
-    min-width: 140px;
+    min-width: 250px;
     display: flex;
     justify-content: center;
+
+    @media (max-width:670px) {
+      min-width: auto;
+    }
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .logo {
@@ -38,9 +48,32 @@ body {
   }
 
   .material-icons {
-    margin: 10px 10px 0px 10px;
+    display: flex;
+    margin: 5px 5px 0px 5px;
+    padding: 5px;
+    border-radius: 10px;
     font-size: 48px;
     color: black;
+    transition-duration: 350ms;
+    // transition: width 2s, height 2s, background-color 2s, transform 2s;
+  }
+
+  .icons-hover {
+    display: flex;
+    font-size: 0px;
+    align-items: center;
+    text-decoration: none;
+    transition-duration: 350ms;
+  }
+
+  .material-icons:hover {
+    background-color: white;
+
+    @media (min-width:670px) {
+      .icons-hover {
+        font-size: 18px;
+      }
+    }
   }
 
   @media (max-width:450px) {
@@ -54,8 +87,15 @@ body {
     }
   }
 }
-
+.choose-form{
+  input:focus{
+    font-size: 32px;
+    // background-color: $color-2-light;
+    // box-shadow: 0 5px 0px $color-2-light;
+  }
+}
 .form {
+  position: relative;
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -67,7 +107,11 @@ body {
     font-size: 30px;
     text-align: center;
     border-radius: 10px;
+    transition-duration: 350ms;
+    border: 0px;
+    
   }
+  
 
   button {
     font-size: 30px;
@@ -84,7 +128,6 @@ body {
   }
 
 }
-
 
 .shops {
   display: flex;
@@ -111,14 +154,16 @@ body {
     background-color: $color-3;
     width: 200px;
     text-align: center;
+    transition-duration: 200ms;
     @media (max-width:500px) {
       width: 150px;
     }
+
     @media (max-width:390px) {
       width: 100px;
       font-size: 12px;
     }
-    
+
     button {
       width: 100%;
       background-color: $color-2;
@@ -371,6 +416,8 @@ body {
 .top-panel {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  z-index: 3;
 
   .material-icons {
     text-align: right;
@@ -389,7 +436,8 @@ body {
       border-radius: 10px;
       color: $main-color;
     }
-    .download:hover{
+
+    .download:hover {
       background-color: $button-hover;
     }
 
@@ -412,6 +460,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+
   .authefication {
     display: flex;
     justify-content: center;
@@ -423,80 +472,174 @@ body {
       border-radius: 15px;
       height: 550px;
     }
-    .data{
+
+    .data {
       display: flex;
       flex-direction: column;
       align-items: center;
-      .form{
-        input{
+
+      .form {
+        input {
           border: 0px;
-          
+
         }
-        button{
+
+        button {
           width: 100%;
           background-color: $color-2;
           color: $main-color;
           border: 0px;
           height: 50px;
         }
-        button:hover{
+
+        button:hover {
           background-color: $button-hover;
         }
+
         @media (max-width:1200px) {
           padding: 100px 30px 100px 30px;
         }
+
         @media (max-width:800px) {
-          input{
+          input {
             font-size: 23px;
           }
-          button{
+
+          button {
             height: 30px;
             font-size: 23px;
           }
         }
-        
+
       }
     }
-    .logo{
+
+    .logo {
       padding-top: 30px;
     }
+
     @media (max-width:1200px) {
       width: 80%;
     }
+
     @media (max-width: 800px) {
       width: 90%;
     }
+
     @media (max-width: 650px) {
-      .banner{
+      .banner {
         display: none;
       }
     }
   }
-  
+
 }
 
-.profile{
+.profile {
   display: flex;
   flex-direction: column;
   align-items: center;
-  .tables{
+
+  .tables {
     width: 60%;
-    .table{
+    transition-duration:1s;
+
+    .table {
       border: 2px $button-hover solid;
       border-radius: 10px;
       background-color: white;
       padding: 5px;
       margin-bottom: 10px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      a{
+
+      @media (max-width:1000px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .table-right {
+          width: 100%;
+        }
+      }
+
+      a {
         text-decoration: none;
         color: black;
       }
-      .table-right{
+
+      .material-icons {
+        background-color: white;
+        transition-duration: 250ms;
+      }
+      .material-icons:hover{
+        font-size: 30px;
+      }
+      .table-right {
+        text-align: right;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        input {
+          border: 0px;
+          font-size: 15px;
+          width: 300px;
+
+          @media (max-width:450px) {
+            width: 80%;
+          }
+
+          @media (max-width:375px) {
+            width: 70%;
+          }
+        }
+
+        button {
+          border: 0px;
+          background-color: white;
+        }
       }
     }
   }
+
+  .new-table {
+    margin-top: 50px;
+    text-decoration: none;
+    color: $main-color;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    div {
+      display: flex;
+      justify-content: center;
+      font-size: 28px;
+      border-radius: 10px;
+      align-items: center;
+      width: 600px;
+      height: 100px;
+      background-color: $color-2;
+
+      @media (max-width:1000px) {
+        width: 60%;
+        height: 75px;
+      }
+
+      @media (max-width:500px) {
+        font-size: 20px;
+      }
+
+      @media (max-width:370px) {
+        font-size: 15px;
+        height: 50px;
+      }
+    }
+
+    div:hover {
+      background-color: $button-hover;
+    }
+  }
+
+
 }

@@ -11,10 +11,10 @@ export default function Header() {
 
                 <div className='buttons'>
                     <Link to={'/'}><span className="material-symbols-outlined material-icons">
-                        home
+                    <div className='icons-hover'>Домой</div>home
                     </span></Link>
                     <Link to={'/table'}><span className="material-symbols-outlined material-icons">
-                        add
+                        add<div className='icons-hover'>Создать</div>
                     </span></Link>
                 </div>
                 <div>
@@ -22,14 +22,14 @@ export default function Header() {
                 </div>
                 <div className='buttons'>
                     <Link to={'/profile'}><span className="material-symbols-outlined material-icons">
-                        account_circle
+                        <div className='icons-hover'>Аккаунт</div>account_circle
                     </span></Link>
-                    <span className="material-symbols-outlined material-icons" onClick={()=>{
+                    <a><span className="material-symbols-outlined material-icons" onClick={() => {
                         logout()
                         toast.info('Вы вышли из аккаунта')
-                        }}>
-                        logout
-                    </span>
+                    }}>
+                        logout<div className='icons-hover'>Выйти</div>
+                    </span></a>
                 </div>
 
 
@@ -39,7 +39,7 @@ export default function Header() {
             <div className='header'>
                 <div className='buttons'>
                     <Link to={'/'}><span className="material-symbols-outlined material-icons">
-                        home
+                    <div className='icons-hover'>Домой</div>home
                     </span></Link>
                 </div>
                 <div>
@@ -47,10 +47,10 @@ export default function Header() {
                 </div>
                 <div className='buttons'>
                     <Link to={'/login'}><span className="material-symbols-outlined material-icons">
-                        login
+                    <div className='icons-hover'>Вход</div>login
                     </span></Link>
                     <Link to={'/registration'}><span className="material-symbols-outlined material-icons">
-                        app_registration
+                        app_registration<div className='icons-hover'>Регистрация</div>
                     </span></Link>
                 </div>
 

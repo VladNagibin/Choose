@@ -2,9 +2,11 @@ const { Router } = require("express");
 const fs = require('fs');
 const Table = require("../models/Table");
 const router = Router()
+const jwt = require('jsonwebtoken')
 
 router.get('/getData', (req, res) => {
     const { tableId } = req.query
+    const { token } = req.headers
     Table.findById(tableId).then(table => {
         if (!table) {
             res.status(400).json({
@@ -12,7 +14,16 @@ router.get('/getData', (req, res) => {
             })
             return
         }
-        res.status(200).json(table)
+        try{
+            var userId = jwt.verify(token, process.env.JWT_SECRET)
+            isAdmin = false
+            if(userId == table.adminId){
+                isAdmin = true
+            }
+            res.status(200).json({...table._doc,isAdmin})
+        }catch(e){
+            res.status(200).json({...table._doc,isAdmin:false,jwtErr:e})
+        }
     }, err => {
         res.status(501).json({
             message: 'database err',

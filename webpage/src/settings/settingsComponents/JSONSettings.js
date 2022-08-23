@@ -119,11 +119,11 @@ export default function JSONSettings({ data, fields }) {
                         <input id='name' name='name' type='text' value={form.name} onChange={formHandler} />
                     </div>
                     <div>
-                        <label htmlFor='name'>Описание</label>
+                        <label htmlFor='description'>Описание</label>
                         <input id='description' name='description' type='text' placeholder='Описание таблицы' value={form.description} onChange={formHandler} />
                     </div>
                     <div>
-                        <label htmlFor='name'>Сколько нужно выбрать(0=бесконечно)</label>
+                        <label htmlFor='toChoose'>Сколько нужно выбрать(0=бесконечно)</label>
                         <input id='toChoose' name='toChoose' type='number' value={form.toChoose} onChange={formHandler} />
                     </div>
                     <div>
@@ -131,7 +131,7 @@ export default function JSONSettings({ data, fields }) {
                         <input id='maxInCard' name='maxInCard' type='number' value={form.maxInCard} onChange={formHandler} />
                     </div>
                     <div>
-                        <label htmlFor='name'>Скрывать поля с максимальным числом пользователей</label>
+                        <label htmlFor='hideFilled'>Скрывать поля с максимальным числом пользователей</label>
                         <input id='hideFilled' name='hideFilled' type='checkbox' className='custom-checkbox' checked={form.hideFilled} readOnly /><label htmlFor='hidefilled' onClick={hideFilledHandler}></label>
                     </div>
 

@@ -3,6 +3,15 @@ import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import * as XLSX from 'xlsx/xlsx.mjs';
 import JSONSettings from './JSONSettings';
+import styled, { keyframes } from 'styled-components';
+import { fadeInUp } from 'react-animations';
+
+const openAnimation = keyframes`${fadeInUp}`;
+ 
+const OpenDiv = styled.div`
+  animation: 0.5s ${openAnimation};
+`;
+
 export default function SetNewJSON() {
   const [data, SetData] = useState({})
   const [fields, SetFields] = useState([])
@@ -54,7 +63,7 @@ export default function SetNewJSON() {
 
   function drawSettings() {
     if (fields.length > 0) {
-      return <div className='JSONSettings'><JSONSettings data={data} fields={fields} /></div>
+      return <OpenDiv className='JSONSettings'><JSONSettings data={data} fields={fields} /></OpenDiv>
     } else {
       return <div className='JSONSettings'>
         <h1>Выберите параметры таблицы</h1>

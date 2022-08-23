@@ -19,10 +19,10 @@ export default function ChooseForm({ acceptShops,userFields }) {
         setFormFields()
     },[])
     return (
-        <div className='form'>
+        <div className='form choose-form'>
             {
                 userFields.map(field=>{
-                    return <input key={field.name} type={field.type} placeholder={field.header} name={field.name} value={form[field.name]} onChange={formHandler}></input>
+                    return <input key={field.name} type={field.type} placeholder={field.header} name={field.name} value={form[field.name]?form[field.name]:''} onChange={formHandler}></input>
                 })
             }
             <button onClick={apply}>Подтвердить</button>

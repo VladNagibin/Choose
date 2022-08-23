@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useHttp } from '../../hooks/http.hook'
 import { useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import UserFields from '../../userFields/UserFields';
 import JSONFields from '../../JSONfields/JSONFields';
 export default function Settings({ fields, userFields, settings, settingsHandler }) {
-
-    const { request } = useHttp()
 
     const [newFields, SetFields] = useState([])
     const [newUserFields, SetUserFields] = useState([])
@@ -138,7 +135,7 @@ export default function Settings({ fields, userFields, settings, settingsHandler
                         </div>
                         <div>
                             <label htmlFor='hideFilled'>Скрывать поля с максимальным числом пользователей</label>
-                            <input id='hideFilled' name='hideFilled' type='checkbox' checked={form.hideFilled} onChange={hideFilledHandler} />
+                            <input id='hideFilled' name='hideFilled' type='checkbox' className='custom-checkbox' checked={form.hideFilled} onChange={hideFilledHandler} ></input><label htmlFor='hidefilled' onClick={hideFilledHandler}/>
                         </div>
                         {/* <input name='key' type='radio' value={form.toChoose} onChange={formHandler} /> */}
                     </div>

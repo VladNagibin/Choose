@@ -7,12 +7,16 @@ import { AuthContext } from './context/AuthContext';
 import { ToastContainer} from 'react-toastify';
 import Header from './header/Header';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from './loader/Loader';
 
 function App() {
 
   const { login, logout, userId, token, ready } = useAuth()
   var isAutheficated = !!token
   const routes = useRoutes(isAutheficated)
+  if(!ready){
+    return <Loader/>
+  }
   return (
     <AuthContext.Provider value={{
       login, logout, userId, token, isAutheficated

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext,useCallback } from 'react'
 import { useHttp } from '../hooks/http.hook';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import ChooseForm from './tablePageComponents/ChooseForm';
@@ -8,16 +8,32 @@ import SettingsPanel from './tablePageComponents/SettingsPanel';
 import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 
+import styled, { keyframes } from 'styled-components';
+import { slideInLeft, slideInUp } from 'react-animations';
+import Loader from '../loader/Loader';
+
+const openAnimation = keyframes`${slideInLeft}`;
+
+const SlideLeftDiv = styled.div`
+  animation: 1s ${openAnimation};
+`;
+const openAnimationDown = keyframes`${slideInUp}`;
+
+const BottomSlideDiv = styled.div`
+  animation: 0.5s ${openAnimationDown};
+`;
+
 export default function TablePage() {
   const { loading, request, error, CleanErrors } = useHttp()
   let navigate = useNavigate()
-  const { userId, token } = useContext(AuthContext)
+  const { userId, token, ready } = useContext(AuthContext)
   const [selected, setSelected] = useState([])
   const [available, setAvailable] = useState([])
   const [settings, setSettings] = useState({
     fields: [],
     userFields: [],
-    settings: {}
+    settings: {},
+    isAdmin: false
   })
   const tableId = useParams().id
   const keyField = getKeyField()
@@ -45,21 +61,28 @@ export default function TablePage() {
     setSelected(newCards)
     // console.log(newCards)
   }
-  async function getData() {
-    var table = await request('/choose/getData?tableId=' + tableId, 'GET')
-    //console.log(table)
+  const getData = useCallback(async (controller) => {
+    try {
+      var table = await request('/choose/getData?tableId=' + tableId, 'GET', null, { token: token }, controller.signal)
+    } catch (e) {
+      if (e.name != 'AbortError') {
+        throw e
+      }
+      return
+    }
     setAvailable(table.data)
     setSettings({
       fields: table.fields,
       userFields: table.userFields,
-      settings: table.settings
+      settings: table.settings,
+      isAdmin: table.isAdmin
     })
-  }
+  },[tableId,token])
 
   async function accept(form) {
     var dataIsFilled = true
     for (var key in form) {
-      if(form[key]==''){
+      if (form[key] == '') {
         dataIsFilled = false
       }
     }
@@ -104,6 +127,15 @@ export default function TablePage() {
       return <Shops cards={available} setCard={select} declineCard={decline} settings={settings.settings} fields={settings.fields} keyField={keyField} />
     }
   }
+
+  function drawSettings() {
+    if (settings.isAdmin) {
+      return <SettingsPanel settings={settings} settingsHandler={settingsHandler} tableId={tableId} />
+    } else {
+      return <></>
+    }
+  }
+
   async function settingsHandler(newSettings) {
 
     try {
@@ -122,26 +154,38 @@ export default function TablePage() {
 
   }
   useEffect(() => {
-    getData()
-  }, [])
+    let controller = new AbortController()
+    getData(controller)
+    return (() => {
+      controller.abort()
+    })
+  }, [getData])
 
-  return (
-    <div className='app'>
-      <div className='top-panel'>
-        <div className='table-name'>
-          <h1>{settings.settings.name}</h1>
-          <h1>Выбери {settings.settings.toChoose == 0 ? 'сколько угодно' : settings.settings.toChoose}</h1>
-          <h1>{settings.settings.description}</h1>
 
+
+  function pageRender() {
+    if (!available.length) {
+      return <Loader/>
+    }
+    return (
+      <div className='app'>
+        <div className='top-panel'>
+          <SlideLeftDiv className='table-name'>
+            <h1>{settings.settings.name}</h1>
+            <h1>Выбери {settings.settings.toChoose == 0 ? 'сколько угодно' : settings.settings.toChoose}</h1>
+            <h1>{settings.settings.description}</h1>
+
+          </SlideLeftDiv>
+
+          {drawSettings()}
         </div>
-        <div>
-        {/* <img className='logo' src='/logo-small.png' /> */}
-        </div>
-        <SettingsPanel settings={settings} settingsHandler={settingsHandler} tableId={tableId} />
-
+        <SlideLeftDiv><ChooseForm acceptShops={accept} userFields={settings.userFields} /></SlideLeftDiv>
+        <BottomSlideDiv>
+          {drawCards()}
+        </BottomSlideDiv>
       </div>
-      <ChooseForm acceptShops={accept} userFields={settings.userFields} />
-      {drawCards()}
-    </div>
-  );
+    )
+  }
+
+  return pageRender();
 }
