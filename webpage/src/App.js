@@ -8,6 +8,7 @@ import { ToastContainer} from 'react-toastify';
 import Header from './header/Header';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './loader/Loader';
+import Footer from './footer/Footer';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Header />
           {routes}
           <ToastContainer />
+          <Footer />
         </div>
       </BrowserRouter>
     </AuthContext.Provider>

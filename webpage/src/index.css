@@ -177,7 +177,7 @@
 
 body {
   margin: 0px;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .app {
@@ -189,6 +189,8 @@ body {
 }
 
 .header {
+  background-color: #fadfb8;
+  padding-bottom: 20px;
   padding-top: 5px;
   display: flex;
   flex-direction: row;
@@ -271,9 +273,14 @@ body {
   color: blanchedalmond;
   border: 0px;
   height: 50px;
+  transition-duration: 250ms;
 }
 .form button:hover {
   background-color: #875a5a;
+}
+
+.no-data {
+  margin-top: 70px;
 }
 
 .shops {
@@ -282,10 +289,10 @@ body {
   justify-content: space-around;
 }
 .shops .chosen {
-  background-color: rgb(30, 204, 30) !important;
+  background-color: #1ecc1e !important;
 }
 .shops .filled {
-  background-color: rgb(193, 195, 197) !important;
+  background-color: #c1c3c5 !important;
 }
 .shops .shop {
   display: flex;
@@ -333,9 +340,6 @@ body {
   text-align: center;
   font-weight: 400;
 }
-.settings .no-data {
-  margin-top: 70px;
-}
 @media (max-width: 700px) {
   .settings .buttons {
     width: 90% !important;
@@ -381,6 +385,7 @@ body {
   font-size: 28px;
   margin: 3% 3% 0px 3%;
   cursor: pointer;
+  transition-duration: 250ms;
 }
 @media (max-width: 700px) {
   .settings .set-new-json .buttons label {
@@ -399,7 +404,6 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  min-height: 400px;
 }
 @media (min-width: 700px) {
   .settings .JSONSettings td {
@@ -477,6 +481,10 @@ body {
   border-radius: 5px;
   cursor: pointer;
   color: blanchedalmond;
+  transition-duration: 250ms;
+}
+.settings .JSONSettings .user-fields button:hover {
+  background-color: #875a5a;
 }
 .settings .JSONSettings .last-settings {
   display: flex;
@@ -505,6 +513,7 @@ body {
   border: 0px;
   border-radius: 10px;
   color: blanchedalmond;
+  transition-duration: 250ms;
 }
 @media (max-width: 700px) {
   .settings .JSONSettings .createNewTable {
@@ -536,6 +545,7 @@ body {
   margin-bottom: 15px;
   border-radius: 10px;
   color: blanchedalmond;
+  transition-duration: 250ms;
 }
 .top-panel .settings-panel .download:hover {
   background-color: #875a5a;
@@ -585,6 +595,7 @@ body {
   color: blanchedalmond;
   border: 0px;
   height: 50px;
+  transition-duration: 250ms;
 }
 .container .authefication .data .form button:hover {
   background-color: #875a5a;
@@ -626,6 +637,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 30vh;
+}
+.profile .new-table-href {
+  margin-bottom: 50px;
 }
 .profile .tables {
   width: 60%;
@@ -686,7 +701,8 @@ body {
   border: 0px;
   background-color: white;
 }
-.profile .new-table {
+
+.new-table {
   margin-top: 50px;
   text-decoration: none;
   color: blanchedalmond;
@@ -694,7 +710,7 @@ body {
   justify-content: center;
   width: 100%;
 }
-.profile .new-table div {
+.new-table div {
   display: flex;
   justify-content: center;
   font-size: 28px;
@@ -703,24 +719,126 @@ body {
   width: 600px;
   height: 100px;
   background-color: #af7474;
+  transition-duration: 250ms;
 }
 @media (max-width: 1000px) {
-  .profile .new-table div {
+  .new-table div {
     width: 60%;
     height: 75px;
   }
 }
 @media (max-width: 500px) {
-  .profile .new-table div {
+  .new-table div {
     font-size: 20px;
   }
 }
 @media (max-width: 370px) {
-  .profile .new-table div {
+  .new-table div {
     font-size: 15px;
     height: 50px;
   }
 }
-.profile .new-table div:hover {
+.new-table div:hover {
   background-color: #875a5a;
+}
+
+.main-page {
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: center;
+}
+.main-page h1 {
+  font-size: 35px;
+  margin-bottom: 30px;
+}
+@media (max-width: 1200px) {
+  .main-page {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .main-page h1 {
+    font-size: 32px;
+  }
+}
+@media (max-width: 500px) {
+  .main-page {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .main-page h1 {
+    font-size: 28px;
+  }
+}
+.main-page h2 {
+  font-weight: 500;
+}
+.main-page .main-banner {
+  margin-top: 50px;
+  margin-bottom: 70px;
+  border-radius: 20px;
+}
+.main-page .main-banner img {
+  border: 6px white solid;
+  border-radius: 20px;
+  width: 100%;
+}
+.main-page .how-to {
+  margin-bottom: 120px;
+}
+.main-page .how-to .how-to-banners {
+  display: flex;
+  justify-content: space-around;
+}
+.main-page .how-to .how-to-banners img {
+  margin-bottom: 50px;
+  width: 25%;
+}
+@media (max-width: 500px) {
+  .main-page .how-to .how-to-banners {
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-page .how-to .how-to-banners img {
+    width: 70%;
+  }
+}
+.main-page .safety {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.main-page .safety .open-source {
+  cursor: pointer;
+}
+.main-page .safety img {
+  margin-bottom: 50px;
+  width: 25%;
+}
+@media (max-width: 500px) {
+  .main-page .safety {
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-page .safety img {
+    width: 70%;
+  }
+}
+
+.footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #fadfb8;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer div {
+  transition-duration: 250ms;
+  cursor: pointer;
+}
+.footer div:hover {
+  font-size: 20px;
+}
+.footer img {
+  width: 20%;
 }

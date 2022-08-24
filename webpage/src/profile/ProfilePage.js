@@ -10,7 +10,7 @@ import { slideInLeft } from 'react-animations';
 import Loader from '../loader/Loader'
 
 const openAnimation = keyframes`${slideInLeft}`;
- 
+
 const OpenDiv = styled.div`
   animation: 1s ${openAnimation};
 `;
@@ -18,17 +18,17 @@ const OpenDiv = styled.div`
 
 export default function ProfilePage() {
     const { token } = useContext(AuthContext)
-    const { request,loading } = useHttp()
+    const { request, loading } = useHttp()
     const [userData, setUserData] = useState({
         login: '',
         tables: []
     })
     const clipboard = useClipboard()
-    const getUserData = useCallback(async (controller)=> {
-        try{
-            var data = await request('/auth/getUserData', 'GET', null, { token: token },controller.signal)
-        }catch(e){
-            if(e.name!='AbortError'){
+    const getUserData = useCallback(async (controller) => {
+        try {
+            var data = await request('/auth/getUserData', 'GET', null, { token: token }, controller.signal)
+        } catch (e) {
+            if (e.name != 'AbortError') {
                 throw e
             }
             return
@@ -37,22 +37,22 @@ export default function ProfilePage() {
             login: data.login,
             tables: data.tables
         })
-        
-    },[token])
-    
+
+    }, [token])
+
     useEffect(() => {
         let controller = new AbortController();
         getUserData(controller)
-        return(()=>{
+        return (() => {
             controller.abort()
         })
     }, [getUserData])
-    if(userData.login==''){
-        return <Loader/>
+    if (userData.login == '') {
+        return <Loader />
     }
-    function drawTables(){
-        if(userData.tables.length){
-            return <OpenDiv>{
+    function drawTables() {
+        if (userData.tables.length) {
+            return <><h2>Ваши таблицы:</h2><OpenDiv>{
                 userData.tables.map(table => {
                     return <div key={table.id} className='table'>
                         <Link to={'/table/' + table.id} >
@@ -75,22 +75,28 @@ export default function ProfilePage() {
                         </div>
                     </div>
                 })
-            }</OpenDiv>
-        }else{
-            return <></>
+            }</OpenDiv></>
+        } else {
+            return <OpenDiv className='no-data profile'>
+                <h2>Голосований пока нет</h2>
+                <span className="material-symbols-outlined material-icons">
+                    mood_bad
+                </span>
+            </OpenDiv >
         }
     }
     return (
         <div className='profile'>
             <h1>Здравствуйте {userData.login}</h1>
             <div className='tables'>
-                <h2>Ваши таблицы:</h2>
+                
                 {
                     drawTables()
                 }
 
             </div>
             <Link to='/table' className='new-table'>
+                
                 <div className='new-table-href'>
                     Создать новую таблицу
                 </div>

@@ -24,6 +24,7 @@ export const useRoutes = isAunteficated => {
         <Routes>
             <Route path="/" exact element={<MainPage />} />
             <Route path="/login" exact element={<LoginPage />} />
+            <Route path="/table" exact element={<Navigate replace to="/registration" />}/>
             <Route path="/registration" exact element={<RegistrationPage />} />
             <Route path="/table/:id" element={<TablePage/>}/>
             <Route path="*" element={<Navigate replace to="/" />} />
