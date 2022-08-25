@@ -769,6 +769,10 @@ body {
   justify-content: space-around;
   align-items: center;
 
+  a{
+    text-decoration: none;
+    color: black;
+  }
   div {
     transition-duration: 250ms;
     cursor: pointer;
@@ -781,4 +785,47 @@ body {
   img {
     width: 20%;
   }
+}
+
+.docs{
+  text-align: center;
+  a{
+    text-decoration: none;
+    color: black;
+    transition-duration: 250ms;
+  }
+  a:hover {
+    font-size: 20px;
+  }
+  .content{
+    padding: 20px 0px 20px 0px;
+    background-color: $footer-header;
+    display: flex;
+    justify-content: space-around;
+    .chosen{
+      font-size: 20px;
+    }
+  }
+  .main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .picture{
+      border: 6px white solid;
+      border-radius: 20px;
+      max-width: 90%;
+      img{
+        max-width: 100%;
+      }
+    }
+    .description{
+      text-align: left;
+      li{
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 10px;
+      }
+    }
+  }
+  
 }

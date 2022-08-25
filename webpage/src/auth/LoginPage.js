@@ -28,9 +28,6 @@ export default function LoginPage() {
     return (
         <div className='container'>
             <div className='authefication'>
-                <div className='banner'>
-
-                </div>
                 <div className='data'>
                     <div className='logo'>
                         <img className='logo-pic' src='/logo-small.png' />

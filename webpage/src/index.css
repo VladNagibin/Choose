@@ -832,6 +832,10 @@ body {
   justify-content: space-around;
   align-items: center;
 }
+.footer a {
+  text-decoration: none;
+  color: black;
+}
 .footer div {
   transition-duration: 250ms;
   cursor: pointer;
@@ -841,4 +845,46 @@ body {
 }
 .footer img {
   width: 20%;
+}
+
+.docs {
+  text-align: center;
+}
+.docs a {
+  text-decoration: none;
+  color: black;
+  transition-duration: 250ms;
+}
+.docs a:hover {
+  font-size: 20px;
+}
+.docs .content {
+  padding: 20px 0px 20px 0px;
+  background-color: #fadfb8;
+  display: flex;
+  justify-content: space-around;
+}
+.docs .content .chosen {
+  font-size: 20px;
+}
+.docs .main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.docs .main .picture {
+  border: 6px white solid;
+  border-radius: 20px;
+  max-width: 90%;
+}
+.docs .main .picture img {
+  max-width: 100%;
+}
+.docs .main .description {
+  text-align: left;
+}
+.docs .main .description li {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 10px;
 }
