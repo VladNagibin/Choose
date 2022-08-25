@@ -788,7 +788,9 @@ body {
 }
 
 .docs{
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   a{
     text-decoration: none;
     color: black;
@@ -798,6 +800,7 @@ body {
     font-size: 20px;
   }
   .content{
+    width: 100%;
     padding: 20px 0px 20px 0px;
     background-color: $footer-header;
     display: flex;
@@ -807,6 +810,16 @@ body {
     }
   }
   .main{
+    width: 60%;
+    @media (max-width:1200px) {
+      width: 70%;
+    }
+    @media (max-width:800px) {
+      width: 80%;
+    }
+    @media (max-width:500px) {
+      width: 90%;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -824,6 +837,47 @@ body {
         font-size: 20px;
         font-weight: 700;
         margin-top: 10px;
+      }
+    }
+  }
+  .create{
+    width: 60%;
+    @media (max-width:1200px) {
+      width: 70%;
+    }
+    @media (max-width:800px) {
+      width: 80%;
+    }
+    @media (max-width:500px) {
+      width: 90%;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .steps{
+      width: 100%;
+      text-align: left;
+      li{
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 10px;
+      }
+      .formats{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        .JSON{
+          width: 50%;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          img{
+            max-height: 300px;
+          }
+          div{
+            margin: 50px 0px 0px 20px;
+          }
+        }
       }
     }
   }

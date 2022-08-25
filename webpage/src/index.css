@@ -848,7 +848,9 @@ body {
 }
 
 .docs {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .docs a {
   text-decoration: none;
@@ -859,6 +861,7 @@ body {
   font-size: 20px;
 }
 .docs .content {
+  width: 100%;
   padding: 20px 0px 20px 0px;
   background-color: #fadfb8;
   display: flex;
@@ -868,9 +871,25 @@ body {
   font-size: 20px;
 }
 .docs .main {
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (max-width: 1200px) {
+  .docs .main {
+    width: 70%;
+  }
+}
+@media (max-width: 800px) {
+  .docs .main {
+    width: 80%;
+  }
+}
+@media (max-width: 500px) {
+  .docs .main {
+    width: 90%;
+  }
 }
 .docs .main .picture {
   border: 6px white solid;
@@ -887,4 +906,51 @@ body {
   font-size: 20px;
   font-weight: 700;
   margin-top: 10px;
+}
+.docs .create {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 1200px) {
+  .docs .create {
+    width: 70%;
+  }
+}
+@media (max-width: 800px) {
+  .docs .create {
+    width: 80%;
+  }
+}
+@media (max-width: 500px) {
+  .docs .create {
+    width: 90%;
+  }
+}
+.docs .create .steps {
+  width: 100%;
+  text-align: left;
+}
+.docs .create .steps li {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+.docs .create .steps .formats {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.docs .create .steps .formats .JSON {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.docs .create .steps .formats .JSON img {
+  max-height: 300px;
+}
+.docs .create .steps .formats .JSON div {
+  margin: 50px 0px 0px 20px;
 }
