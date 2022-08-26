@@ -39,25 +39,18 @@ router.post('/saveSettings', (req, res) => {
 
 router.post('/createNewTable', (req, res) => {
     const { fields, userFields, settings, data, userId } = req.body
-
-
-    // fs.writeFileSync("./settings.json", JSON.stringify({
-    //     fields,
-    //     userFields,
-    //     settings
-    // }))
     newData = []
     data.forEach(element => {
         if (settings.maxInCard == 0) {
             newData.push({
                 ...element,
-                usersInShop: []
+                usersInCard: []
             })
         } else {
             newData.push({
                 ...element,
                 freePlaces: settings.maxInCard,
-                usersInShop: []
+                usersInCard: []
             })
         }
     })

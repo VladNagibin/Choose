@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { AuthContext } from '../context/AuthContext'
 
 export default function Header() {
+    const { t } = useTranslation();
     const { isAutheficated, logout } = useContext(AuthContext)
     if (isAutheficated) {
         return (
@@ -11,10 +13,10 @@ export default function Header() {
 
                 <div className='buttons'>
                     <Link to={'/'}><span className="material-symbols-outlined material-icons">
-                    <div className='icons-hover'>Домой</div>home
+                    <div className='icons-hover'>{t("header.home")}</div>home
                     </span></Link>
                     <Link to={'/table'}><span className="material-symbols-outlined material-icons">
-                        add<div className='icons-hover'>Создать</div>
+                        add<div className='icons-hover'>{t("header.create")}</div>
                     </span></Link>
                 </div>
                 <div>
@@ -22,13 +24,13 @@ export default function Header() {
                 </div>
                 <div className='buttons'>
                     <Link to={'/profile'}><span className="material-symbols-outlined material-icons">
-                        <div className='icons-hover'>Аккаунт</div>account_circle
+                        <div className='icons-hover'>{t("header.account")}</div>account_circle
                     </span></Link>
                     <a><span className="material-symbols-outlined material-icons" onClick={() => {
                         logout()
                         toast.info('Вы вышли из аккаунта')
                     }}>
-                        logout<div className='icons-hover'>Выйти</div>
+                        logout<div className='icons-hover'>{t("header.out")}</div>
                     </span></a>
                 </div>
 

@@ -65,7 +65,12 @@ router.get('/getUserData', (req, res) => {
                 tables.forEach(table=>{
                     var peopleVote = 0
                     table.data.forEach(elem=>{
-                        peopleVote += elem.usersInShop.length
+                        try{
+                            peopleVote += elem.usersInCard.length
+                        }catch{
+                            peopleVote += elem.usersInShop.length
+                        }
+                        
                     })
                     tableIds.push({
                         id:table._id,

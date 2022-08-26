@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext,useCallback } from 'react'
+import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { useHttp } from '../hooks/http.hook';
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import ChooseForm from './tablePageComponents/ChooseForm';
@@ -63,6 +63,7 @@ export default function TablePage() {
   }
   const getData = useCallback(async (controller) => {
     try {
+      console.log(tableId)
       var table = await request('/choose/getData?tableId=' + tableId, 'GET', null, { token: token }, controller.signal)
     } catch (e) {
       if (e.name != 'AbortError') {
@@ -77,7 +78,7 @@ export default function TablePage() {
       settings: table.settings,
       isAdmin: table.isAdmin
     })
-  },[tableId,token])
+  }, [tableId, token])
 
   async function accept(form) {
     var dataIsFilled = true
@@ -105,16 +106,6 @@ export default function TablePage() {
         tableId: tableId
       })
     } catch (e) {
-      if (e.alreadyBusyShops) {
-        var errText = "Эти магазины уже заняты:"
-        e.alreadyBusyShops.forEach(element => {
-          errText = errText + '\n' + element
-        })
-        toast.error(errText)
-      } else {
-        toast.error(e)
-      }
-
       return false
     }
     getData()
@@ -160,15 +151,24 @@ export default function TablePage() {
       controller.abort()
     })
   }, [getData])
+  useEffect(() => {
+    if (error) {
+      if (error != 'The user aborted a request') {
+        toast.error(error)
+        CleanErrors()
+      }
 
+    }
+
+  }, [error])
 
 
   function pageRender() {
     if (!available.length) {
-      return <Loader/>
+      return <Loader />
     }
     return (
-      <div className='app'>
+      <div className='app table-page'>
         <div className='top-panel'>
           <SlideLeftDiv className='table-name'>
             <h1>{settings.settings.name}</h1>

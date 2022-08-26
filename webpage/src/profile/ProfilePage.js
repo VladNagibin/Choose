@@ -2,12 +2,11 @@ import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import { useHttp } from '../hooks/http.hook'
-import { useClipboard } from 'use-clipboard-copy'
-import { toast } from 'react-toastify';
 
 import styled, { keyframes } from 'styled-components';
 import { slideInLeft } from 'react-animations';
 import Loader from '../loader/Loader'
+import Tables from './profileComponents/Tables';
 
 const openAnimation = keyframes`${slideInLeft}`;
 
@@ -23,7 +22,6 @@ export default function ProfilePage() {
         login: '',
         tables: []
     })
-    const clipboard = useClipboard()
     const getUserData = useCallback(async (controller) => {
         try {
             var data = await request('/auth/getUserData', 'GET', null, { token: token }, controller.signal)
@@ -52,30 +50,10 @@ export default function ProfilePage() {
     }
     function drawTables() {
         if (userData.tables.length) {
-            return <><h2>Ваши таблицы:</h2><OpenDiv>{
-                userData.tables.map(table => {
-                    return <div key={table.id} className='table'>
-                        <Link to={'/table/' + table.id} >
-                            <div>{table.name}
-                            </div>
-                            <div>Карточек выбрано: {table.peopleVote}
-                            </div>
-                        </Link>
-                        <div className='table-right'>
-                            <input ref={clipboard.target} value={'http://localhost:3000/table/' + table.id} readOnly></input>
-                            <button title='Скопировать' onClick={() => {
-                                clipboard.copy()
-                                toast.info('Ссылка скопирована')
-                            }}><span className="material-symbols-outlined material-icons">
-                                    content_copy
-                                </span></button>
-                            <Link to={'/table/' + table.id} title='Открыть'><span className="material-symbols-outlined material-icons">
-                                open_in_new
-                            </span></Link>
-                        </div>
-                    </div>
-                })
-            }</OpenDiv></>
+            return <><h2>Ваши таблицы:</h2>
+            <OpenDiv>
+                <Tables tables={userData.tables}/>
+            </OpenDiv></>
         } else {
             return <OpenDiv className='no-data profile'>
                 <h2>Голосований пока нет</h2>
@@ -96,7 +74,6 @@ export default function ProfilePage() {
 
             </div>
             <Link to='/table' className='new-table'>
-                
                 <div className='new-table-href'>
                     Создать новую таблицу
                 </div>

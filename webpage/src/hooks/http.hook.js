@@ -13,7 +13,7 @@ export const useHttp = () =>{
             const responce = await fetch(url,{method,body,headers,signal:abortSignal})
             const data = await responce.json()
             if(responce.status!==200){
-                throw new Error(data || 'smth went wrong')
+                throw new Error(data.message || 'smth went wrong')
             }
             SetLoading(false)
             return data

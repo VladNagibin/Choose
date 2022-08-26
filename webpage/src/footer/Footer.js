@@ -1,7 +1,10 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function Footer() {
+    const { t } = useTranslation();
     return (
         <div className='footer'>
             <div>
@@ -12,12 +15,12 @@ export default function Footer() {
             }}>
                 Github
             </div>
-            <div>
+            <div onClick={()=>toast.info('Еще в разработке)')}>
                 API
             </div>
             <Link to='/docs/main'>
             <div>
-                Справка
+                {t("documentation")}
             </div>
             </Link>
         </div>

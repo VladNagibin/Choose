@@ -5,9 +5,10 @@ import * as XLSX from 'xlsx/xlsx.mjs';
 import JSONSettings from './JSONSettings';
 import styled, { keyframes } from 'styled-components';
 import { fadeInUp } from 'react-animations';
+import { Link } from 'react-router-dom';
 
 const openAnimation = keyframes`${fadeInUp}`;
- 
+
 const OpenDiv = styled.div`
   animation: 0.5s ${openAnimation};
 `;
@@ -89,22 +90,26 @@ export default function SetNewJSON() {
             Загрузить JSON
             <input id='json' type='file' onChange={handleJSONChange} accept='.json' placeholder={"Выберите файл"}></input>
           </label>
+
           <div className='format'>
-            формат
-            <span className="material-symbols-outlined material-icons">
-              help
-            </span>
+            <Link to='/docs/howToCreate'>формат
+              <span className="material-symbols-outlined material-icons">
+                help
+              </span></Link>
           </div>
+
+
           <label htmlFor='excel'>
             Загрузить Excel
             <input id='excel' type='file' onChange={handleExcelChange} accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" placeholder={"Выберите файл"}></input>
           </label>
-          <div className='format'>
-            формат
-            <span className="material-symbols-outlined material-icons">
-              help
-            </span>
-          </div>
+            <div className='format'>
+            <Link to='/docs/howToCreate'>
+              формат
+              <span className="material-symbols-outlined material-icons">
+                help
+              </span></Link>
+            </div>
         </div>
       </div>
       {drawSettings()}

@@ -184,6 +184,11 @@ body {
   background-color: blanchedalmond;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 .material-icons {
   cursor: pointer;
 }
@@ -281,6 +286,10 @@ body {
 
 .no-data {
   margin-top: 70px;
+}
+
+.table-page {
+  min-height: calc(100vh - 172px);
 }
 
 .shops {
@@ -568,7 +577,8 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  padding-top: 20px;
+  min-height: calc(100vh - 192px);
 }
 .container .authefication {
   display: flex;
@@ -637,7 +647,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 30vh;
+  min-height: calc(100vh - 172px);
 }
 .profile .new-table-href {
   margin-bottom: 50px;
@@ -785,6 +795,38 @@ body {
 .main-page .how-to {
   margin-bottom: 120px;
 }
+.main-page .how-to .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+.main-page .how-to .buttons .new-table {
+  width: 50%;
+}
+.main-page .how-to .buttons .new-table div {
+  font-size: 23px;
+  width: 300px;
+  height: 75px;
+}
+@media (max-width: 1000px) {
+  .main-page .how-to .buttons .new-table div {
+    width: 90%;
+    height: 50px;
+  }
+}
+@media (max-width: 500px) {
+  .main-page .how-to .buttons .new-table div {
+    font-size: 18px;
+  }
+}
+@media (max-width: 370px) {
+  .main-page .how-to .buttons .new-table div {
+    font-size: 13px;
+    height: 40px;
+  }
+}
+.main-page .how-to .buttons .new-table div:hover {
+  background-color: #875a5a;
+}
 .main-page .how-to .how-to-banners {
   display: flex;
   justify-content: space-around;
@@ -838,6 +880,7 @@ body {
 }
 .footer div {
   transition-duration: 250ms;
+  margin: 0px 5px 0px 5px;
   cursor: pointer;
 }
 .footer div:hover {
@@ -935,12 +978,17 @@ body {
 .docs .create .steps li {
   font-size: 20px;
   font-weight: 700;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .docs .create .steps .formats {
   width: 100%;
   display: flex;
   justify-content: flex-start;
+}
+@media (max-width: 750px) {
+  .docs .create .steps .formats {
+    font-size: 13px;
+  }
 }
 .docs .create .steps .formats .JSON {
   width: 50%;
@@ -948,9 +996,74 @@ body {
   flex-direction: row;
   justify-content: flex-start;
 }
-.docs .create .steps .formats .JSON img {
-  max-height: 300px;
-}
 .docs .create .steps .formats .JSON div {
   margin: 50px 0px 0px 20px;
+}
+@media (max-width: 750px) {
+  .docs .create .steps .formats .JSON {
+    flex-direction: column;
+  }
+  .docs .create .steps .formats .JSON div {
+    margin: 50px 20px 0px 0px;
+  }
+}
+.docs .create .steps .formats .JSON img {
+  max-height: 300px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.docs .create .steps .formats .Excel {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+@media (max-width: 750px) {
+  .docs .create .steps .formats .Excel {
+    text-align: right;
+  }
+}
+.docs .create .steps .formats .Excel img {
+  width: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media (max-width: 750px) {
+  .docs .create .steps .formats .Excel img {
+    height: 300px;
+    margin-bottom: 50px;
+    width: 100%;
+  }
+}
+.docs .create .steps .final-data {
+  justify-content: space-between;
+}
+.docs .create .steps .settings {
+  display: flex;
+  flex-direction: row;
+}
+.docs .create .steps .settings .final-json {
+  max-width: 30%;
+}
+.docs .create .steps .settings img {
+  max-width: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media (max-width: 750px) {
+  .docs .create .steps .settings {
+    flex-direction: column-reverse;
+    font-size: 12px;
+  }
+  .docs .create .steps .settings img {
+    max-width: 100%;
+  }
+}
+.docs .create .steps .settings .text div {
+  margin-top: 10px;
+}
+.docs .docs-button {
+  color: blanchedalmond;
+  margin-bottom: 50px;
 }

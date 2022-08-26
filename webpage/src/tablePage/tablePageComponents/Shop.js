@@ -5,20 +5,16 @@ export default function Shop({ cardData, regInCard, declineCard, fields, keyFiel
     const [chosed, setChosed] = useState(false)
     const [card, setCard] = useState(cardData)
     const available = () => {
-        try{
-            if (cardData.freePlaces == 0) {
-                return false
-            }
-        }catch(e){
-
-        }
-        return true
+        var unavailable = ('freePlaces' in cardData && cardData.freePlaces < 1)
+        console.log(unavailable)
+        console.log(cardData)
+        return !unavailable 
 
     }
 
     async function chose() {
         // console.log(cardData)
-        if (cardData.freePlaces && cardData.freePlaces == 0) {
+        if (cardData.freePlaces && cardData.freePlaces < 1) {
             return
         }
         if (chosed) {

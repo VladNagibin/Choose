@@ -14,15 +14,15 @@ router.get('/getData', (req, res) => {
             })
             return
         }
-        try{
+        try {
             var userId = jwt.verify(token, process.env.JWT_SECRET)
             isAdmin = false
-            if(userId == table.adminId){
+            if (userId == table.adminId) {
                 isAdmin = true
             }
-            res.status(200).json({...table._doc,isAdmin})
-        }catch(e){
-            res.status(200).json({...table._doc,isAdmin:false,jwtErr:e})
+            res.status(200).json({ ...table._doc, isAdmin })
+        } catch (e) {
+            res.status(200).json({ ...table._doc, isAdmin: false, jwtErr: e })
         }
     }, err => {
         res.status(501).json({
@@ -48,11 +48,17 @@ router.post('/saveCards', (req, res) => {
         var filledCards = []
         Ids.forEach(cardId => {
             var i = cards.findIndex(el => el[keyField] == cardId)
-            if (cards[i].freePlaces < 1) {
+            if ('freePlaces' in cards[i] && cards[i].freePlaces < 1) {
                 filledCards.push(cards[i])
             } else {
-                cards[i].freePlaces = cards[i].freePlaces - 1
-                cards[i].usersInShop.push(user)
+                if('freePlaces' in cards[i]){
+                    cards[i].freePlaces = cards[i].freePlaces - 1
+                }
+                try {
+                    cards[i].usersInCard.push(user)
+                } catch (e) {
+                    cards[i].usersInShop.push(user)
+                }
 
 
             }
@@ -71,10 +77,13 @@ router.post('/saveCards', (req, res) => {
             })
 
         } else {
+            var errText = "Эти карточки уже заняты:"
+            filledCards.forEach(element => {
+                errText = errText + '   ' + keyField+ ':' + element[keyField]
+            })
             res.status(401).json({
                 success: false,
-                message: 'Этот магазин уже занят',
-                alreadyBusyShops: filledCards
+                message: errText,
             })
         }
     })

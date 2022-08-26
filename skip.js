@@ -115,8 +115,17 @@ function readExcel(){
     var data = XLSX.utils.sheet_to_json(workbook.Sheets.Data)
     console.log(data)
 }
+var cardData = {
+    cock:1,
+    ass:2,
+    //freePlaces:1
+}
 
+function boolTest(){
+    console.log(('freePlaces' in cardData && cardData.freePlaces < 1))
+}
 // setToDefault()
 //getStats()
 //writeToExcel()
-readExcel()
+//readExcel()
+boolTest()
