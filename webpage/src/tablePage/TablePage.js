@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import styled, { keyframes } from 'styled-components';
 import { slideInLeft, slideInUp } from 'react-animations';
 import Loader from '../loader/Loader';
+import { useTranslation } from 'react-i18next';
 
 const openAnimation = keyframes`${slideInLeft}`;
 
@@ -26,6 +27,7 @@ const BottomSlideDiv = styled.div`
 export default function TablePage() {
   const { loading, request, error, CleanErrors } = useHttp()
   let navigate = useNavigate()
+  const { t } = useTranslation();
   const { userId, token, ready } = useContext(AuthContext)
   const [selected, setSelected] = useState([])
   const [available, setAvailable] = useState([])
@@ -172,7 +174,7 @@ export default function TablePage() {
         <div className='top-panel'>
           <SlideLeftDiv className='table-name'>
             <h1>{settings.settings.name}</h1>
-            <h1>Выбери {settings.settings.toChoose == 0 ? 'сколько угодно' : settings.settings.toChoose}</h1>
+            <h1>{t("table.choose")} {settings.settings.toChoose == 0 ? t("table.no-max") : settings.settings.toChoose}</h1>
             <h1>{settings.settings.description}</h1>
 
           </SlideLeftDiv>

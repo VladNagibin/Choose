@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { AuthContext } from '../context/AuthContext'
@@ -8,6 +9,7 @@ export default function LoginPage() {
     const { login } = useContext(AuthContext)
     const { request, loading } = useHttp()
     const navigate = useNavigate()
+    const { t } = useTranslation();
     const [form, setForm] = useState({
         userLogin: '',
         password: ''
@@ -33,9 +35,9 @@ export default function LoginPage() {
                         <img className='logo-pic' src='/logo-small.png' />
                     </div>
                     <div className='form'>
-                        <input type='text' name='userLogin' id='userLogin' placeholder='Логин' value={form.userLogin} onChange={changeForm}></input>
-                        <input type='password' name='password' id='password' placeholder='Пароль' value={form.password} onChange={changeForm}></input>
-                        <button disabled={loading} onClick={enter}>Войти</button>
+                        <input type='text' name='userLogin' id='userLogin' placeholder={t('auth.login')} value={form.userLogin} onChange={changeForm}></input>
+                        <input type='password' name='password' id='password' placeholder={t('auth.password')} value={form.password} onChange={changeForm}></input>
+                        <button disabled={loading} onClick={enter}>{t('auth.enter')}</button>
                     </div>
 
                 </div>

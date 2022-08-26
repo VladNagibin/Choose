@@ -1,9 +1,11 @@
 import React from 'react'
 import { useHttp } from '../../hooks/http.hook';
 import * as XLSX from 'xlsx/xlsx.mjs';
+import { useTranslation } from 'react-i18next';
 
 export default function DownloadJSON({ tableId }) {
   const { request } = useHttp()
+  const { t } = useTranslation();
   async function downloadJSON() {
     var table = await request('/choose/getData?tableId=' + tableId, 'GET')
     let a = document.createElement("a");
@@ -40,8 +42,8 @@ export default function DownloadJSON({ tableId }) {
 
   return (
     <div className='set-new-json'>
-      <button className='download' onClick={downloadJSON}>Скачать JSON</button>
-      <button className='download' onClick={downloadExcel}>Скачать Excel</button>
+      <button className='download' onClick={downloadJSON}>{t("table.download.JSON")}</button>
+      <button className='download' onClick={downloadExcel}>{t("table.download.Excel")}</button>
     </div>
 
   )

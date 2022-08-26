@@ -6,9 +6,11 @@ import { useHttp } from '../../hooks/http.hook';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 export default function JSONSettings({ data, fields }) {
     const { request } = useHttp()
+    const { t } = useTranslation();
     const { userId } = useContext(AuthContext)
     const [userFields, SetUserFields] = useState([])
     const [form, SetForm] = useState({
@@ -92,52 +94,52 @@ export default function JSONSettings({ data, fields }) {
 
     return (
         <div>
-            <h1>Выберите параметры таблицы</h1>
+            <h1>{t("new-table.JSON-settings.h1")}</h1>
             <div>
                 <JSONFields fields={fields} />
                 <div className='user-fields'>
-                    <h2>Добавьте поля для пользователей</h2>
-                    <input ref={userFieldNameRef} placeholder='Имя' type='text' className='user-field-input' />
-                    <input ref={userFieldHeaderRef} placeholder='Заголовок' className='user-field-input' type='text' />
+                    <h2>{t("new-table.JSON-settings.user-fields.h2")}</h2>
+                    <input ref={userFieldNameRef} placeholder={t("new-table.JSON-settings.JSON-field.name")} type='text' className='user-field-input' />
+                    <input ref={userFieldHeaderRef} placeholder={t("new-table.JSON-settings.JSON-field.header")} className='user-field-input' type='text' />
                     <select ref={userFieldTypeRef} >
                         {/* <option disabled>Тип данных</option> */}
-                        <option value='text'>Текст</option>
-                        <option value='number'>Число</option>
-                        <option value='data'>Дата</option>
-                        <option value='checkbox'>Чек бокс</option>
-                        <option value='email'>email</option>
-                        <option value='color'>Цвет</option>
+                        <option value='text'>{t("new-table.JSON-settings.user-fields.options.text")}</option>
+                        <option value='number'>{t("new-table.JSON-settings.user-fields.options.number")}</option>
+                        <option value='data'>{t("new-table.JSON-settings.user-fields.options.date")}</option>
+                        <option value='checkbox'>{t("new-table.JSON-settings.user-fields.options.checkbox")}</option>
+                        <option value='email'>{t("new-table.JSON-settings.user-fields.options.email")}</option>
+                        <option value='color'>{t("new-table.JSON-settings.user-fields.options.color")}</option>
                     </select>
                     {/* <input ref={userFieldTypeRef} placeholder='Тип данных' type='text' /> */}
-                    <button onClick={handleAddUserField} className='user-field-button'>Добавить</button>
+                    <button onClick={handleAddUserField} className='user-field-button'>{t("new-table.JSON-settings.user-fields.add-button")}</button>
                     <UserFields userFields={userFields} deleteUserField={deleteUserField} />
                 </div>
                 <div className='last-settings'>
-                    <h2>Общие настройки</h2>
+                    <h2>{t("new-table.JSON-settings.last-settings.h2")}</h2>
                     <div>
-                        <label htmlFor='name'>Имя таблицы</label>
+                        <label htmlFor='name'>{t("new-table.JSON-settings.last-settings.name")}</label>
                         <input id='name' name='name' type='text' value={form.name} onChange={formHandler} />
                     </div>
                     <div>
-                        <label htmlFor='description'>Описание</label>
-                        <input id='description' name='description' type='text' placeholder='Описание таблицы' value={form.description} onChange={formHandler} />
+                        <label htmlFor='description'>{t("new-table.JSON-settings.last-settings.description")}</label>
+                        <input id='description' name='description' type='text' value={form.description} onChange={formHandler} />
                     </div>
                     <div>
-                        <label htmlFor='toChoose'>Сколько нужно выбрать(0=бесконечно)</label>
+                        <label htmlFor='toChoose'>{t("new-table.JSON-settings.last-settings.to-choose")}</label>
                         <input id='toChoose' name='toChoose' type='number' value={form.toChoose} onChange={formHandler} />
                     </div>
                     <div>
-                        <label htmlFor='maxInCard'>Максимум в одной карточке(0=бесконечно)</label>
+                        <label htmlFor='maxInCard'>{t("new-table.JSON-settings.last-settings.max-in-card")}</label>
                         <input id='maxInCard' name='maxInCard' type='number' value={form.maxInCard} onChange={formHandler} />
                     </div>
                     <div>
-                        <label htmlFor='hideFilled'>Скрывать поля с максимальным числом пользователей</label>
+                        <label htmlFor='hideFilled'>{t("new-table.JSON-settings.last-settings.hide-filled")}</label>
                         <input id='hideFilled' name='hideFilled' type='checkbox' className='custom-checkbox' checked={form.hideFilled} readOnly /><label htmlFor='hidefilled' onClick={hideFilledHandler}></label>
                     </div>
 
                     {/* <input name='key' type='radio' value={form.toChoose} onChange={formHandler} /> */}
                 </div>
-                <button className='createNewTable' onClick={CreateNewTable}>Создать новую таблицу</button>
+                <button className='createNewTable' onClick={CreateNewTable}>{t("new-table.JSON-settings.last-settings.new-table")}</button>
             </div>
 
         </div >

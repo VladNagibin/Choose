@@ -2,16 +2,17 @@ import React from 'react'
 import { useClipboard } from 'use-clipboard-copy'
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Table({ table }) {
     const clipboard = useClipboard()
-    
+    const { t } = useTranslation();
     return (
         <div key={table.id} className='table'>
             <Link to={'/table/' + table.id} >
                 <div>{table.name}
                 </div>
-                <div>Карточек выбрано: {table.peopleVote}
+                <div>{t("profile.cards-chosen")}: {table.peopleVote}
                 </div>
             </Link>
             <div className='table-right'>

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 export default function ChooseForm({ acceptShops,userFields }) {
     const [form, setform] = useState({})
+    const { t } = useTranslation();
+
     function setFormFields(){
         var newForm = {}
         userFields.forEach(field=>{
@@ -25,7 +28,7 @@ export default function ChooseForm({ acceptShops,userFields }) {
                     return <input key={field.name} type={field.type} placeholder={field.header} name={field.name} value={form[field.name]?form[field.name]:''} onChange={formHandler}></input>
                 })
             }
-            <button onClick={apply}>Подтвердить</button>
+            <button onClick={apply}>{t("table.apply")}</button>
         </div>
     )
 }

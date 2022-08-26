@@ -6,5 +6,92 @@
         "account":"Account",
         "out":"Out"
     },
-    "documentation":"Documentation"
+    "documentation":"Documentation",
+    "main-page":{
+        "main-banner":{
+            "h1":"Vote in 3 clicks",
+            "h2":"Create votes just like never before"
+        },
+        "how-to":{
+            "h1":"How it works"
+        },
+        "buttons":{
+            "docs":"More",
+            "table":"Create new table"
+        },
+        "safety":{
+            "h1":"It's save"
+        }
+    },
+    "new-table":{
+        "h1":"Upload your data",
+        "upload-buttons":{
+            "JSON":"Upload JSON",
+            "format":"format",
+            "Excel":"Upload Excel"
+        },
+        "JSON-settings":{
+            "h1":"Choose vote params",
+            "no-data":"no data",
+            "JSON-field":{
+                "h2":"Set cards fields",
+                "name":"Name",
+                "header":"Header",
+                "show":"Show",
+                "sort":"Sort",
+                "key":"Key"
+            },
+            "user-fields":{
+                "h2":"Set user fields",
+                "options":{
+                    "text":"Text",
+                    "number":"Number",
+                    "date":"Date",
+                    "checkbox":"Checkbox",
+                    "email":"Email",
+                    "color":"Color"
+                },
+                "add-button":"Add",
+                "delete-button":"Delete"
+            },
+            "last-settings":{
+                "h2":"General settings",
+                "name":"Vote name",
+                "description":"Description",
+                "to-choose":"How much to choose(0=inf)",
+                "max-in-card":"Max users in one card(0=inf)",
+                "hide-filled":"Hide fields with max num of users",
+                "new-table":"Create new table"
+            }
+        }
+    },
+    "profile":{
+        "hello":"Hello",
+        "tables":"Your tables",
+        "cards-chosen":"Cards chosen",
+        "new-table":"Create new table",
+        "no votes":"No votes yet"
+    },
+    "auth":{
+        "login":"Login",
+        "password":"Password",
+        "register":"Register",
+        "enter":"Enter"
+    },
+    "table": {
+        "apply": "Apply",
+        "no-max":"as much as you want",
+        "choose": "Choose",
+        "download": {
+            "JSON": "Download JSON",
+            "Excel": "Download Excel",
+            "save-settings": "Save settings"
+        }
+    },
+    "notifications":{
+
+    },
+    "docs":{
+
+    }
 }

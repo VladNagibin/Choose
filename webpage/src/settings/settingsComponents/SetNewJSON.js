@@ -6,6 +6,7 @@ import JSONSettings from './JSONSettings';
 import styled, { keyframes } from 'styled-components';
 import { fadeInUp } from 'react-animations';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const openAnimation = keyframes`${fadeInUp}`;
 
@@ -14,6 +15,7 @@ const OpenDiv = styled.div`
 `;
 
 export default function SetNewJSON() {
+  const { t } = useTranslation();
   const [data, SetData] = useState({})
   const [fields, SetFields] = useState([])
   function getJSONfields(data) {
@@ -67,9 +69,9 @@ export default function SetNewJSON() {
       return <OpenDiv className='JSONSettings'><JSONSettings data={data} fields={fields} /></OpenDiv>
     } else {
       return <div className='JSONSettings'>
-        <h1>Выберите параметры таблицы</h1>
+        <h1>{t("new-table.JSON-settings.h1")}</h1>
         <div className='no-data'>
-          <h2>Данных пока нет</h2>
+          <h2>{t("new-table.JSON-settings.no-data")}</h2>
           <span className="material-symbols-outlined material-icons">
             mood_bad
           </span>
@@ -84,15 +86,15 @@ export default function SetNewJSON() {
   return (
     <>
       <div className='set-new-json'>
-        <h1>Загрузите ваши данные</h1>
+        <h1>{t("new-table.h1")}</h1>
         <div className='buttons'>
           <label htmlFor='json'>
-            Загрузить JSON
+            {t("new-table.upload-buttons.JSON")}
             <input id='json' type='file' onChange={handleJSONChange} accept='.json' placeholder={"Выберите файл"}></input>
           </label>
 
           <div className='format'>
-            <Link to='/docs/howToCreate'>формат
+            <Link to='/docs/howToCreate'>{t("new-table.upload-buttons.format")}
               <span className="material-symbols-outlined material-icons">
                 help
               </span></Link>
@@ -100,16 +102,16 @@ export default function SetNewJSON() {
 
 
           <label htmlFor='excel'>
-            Загрузить Excel
+          {t("new-table.upload-buttons.Excel")}
             <input id='excel' type='file' onChange={handleExcelChange} accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" placeholder={"Выберите файл"}></input>
           </label>
-            <div className='format'>
+          <div className='format'>
             <Link to='/docs/howToCreate'>
-              формат
+            {t("new-table.upload-buttons.format")}
               <span className="material-symbols-outlined material-icons">
                 help
               </span></Link>
-            </div>
+          </div>
         </div>
       </div>
       {drawSettings()}

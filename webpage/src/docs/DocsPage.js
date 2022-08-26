@@ -137,7 +137,7 @@ export default function DocsPage() {
 
     function drawHowToDownload() {
         return <div className='create'>
-            <h2>Как редактировать голосование</h2>
+            <h2>Как скачать данные</h2>
             <div className='steps'>
                 <ol>
                     <li>Войти в аккаунт создателя голосования</li>

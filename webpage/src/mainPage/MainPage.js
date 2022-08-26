@@ -20,12 +20,12 @@ export default function MainPage() {
   return (
     <div className='main-page'>
       <OpenDivLeft className='main-banner'>
-        <h1>Голосование в 3 клика</h1>
+        <h1>{t("main-page.main-banner.h1")}</h1>
         <img src='./table.png' />
-        <h2>Создавайте голосования проще чем когда-либо</h2>
+        <h2>{t("main-page.main-banner.h2")}</h2>
       </OpenDivLeft>
       <OpenDivRight className='how-to'>
-        <h1>Как это работает</h1>
+        <h1>{t("main-page.how-to.h1")}</h1>
         <div className='how-to-banners'>
           <img src='./how-to-1.png' />
           <img src='./how-to-2.png' />
@@ -34,19 +34,19 @@ export default function MainPage() {
         <div className='buttons'>
         <Link to='/docs/main' className='new-table'>
           <div className='new-table-href'>
-            Подробнее
+          {t("main-page.buttons.docs")}
           </div>
         </Link>
         <Link to='/table' className='new-table'>
           <div className='new-table-href'>
-            Создать новую таблицу
+          {t("main-page.buttons.table")}
           </div>
         </Link>
         </div>
         
       </OpenDivRight>
       <OpenDivLeft>
-        <h1>Это безопасно</h1>
+        <h1>{t("main-page.safety.h1")}</h1>
         <div className='safety'>
           <img src='data.png' />
           <img src='hash.png' />

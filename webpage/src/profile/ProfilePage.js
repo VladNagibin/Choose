@@ -7,6 +7,7 @@ import styled, { keyframes } from 'styled-components';
 import { slideInLeft } from 'react-animations';
 import Loader from '../loader/Loader'
 import Tables from './profileComponents/Tables';
+import { useTranslation } from 'react-i18next';
 
 const openAnimation = keyframes`${slideInLeft}`;
 
@@ -16,6 +17,7 @@ const OpenDiv = styled.div`
 
 
 export default function ProfilePage() {
+    const { t } = useTranslation();
     const { token } = useContext(AuthContext)
     const { request, loading } = useHttp()
     const [userData, setUserData] = useState({
@@ -50,13 +52,13 @@ export default function ProfilePage() {
     }
     function drawTables() {
         if (userData.tables.length) {
-            return <><h2>Ваши таблицы:</h2>
-            <OpenDiv>
-                <Tables tables={userData.tables}/>
-            </OpenDiv></>
+            return <><h2>{t("profile.tables")}:</h2>
+                <OpenDiv>
+                    <Tables tables={userData.tables} />
+                </OpenDiv></>
         } else {
             return <OpenDiv className='no-data profile'>
-                <h2>Голосований пока нет</h2>
+                <h2>{t("profile.no-votes")}</h2>
                 <span className="material-symbols-outlined material-icons">
                     mood_bad
                 </span>
@@ -65,9 +67,9 @@ export default function ProfilePage() {
     }
     return (
         <div className='profile'>
-            <h1>Здравствуйте {userData.login}</h1>
+            <h1>{t("profile.hello")} {userData.login}</h1>
             <div className='tables'>
-                
+
                 {
                     drawTables()
                 }
@@ -75,7 +77,7 @@ export default function ProfilePage() {
             </div>
             <Link to='/table' className='new-table'>
                 <div className='new-table-href'>
-                    Создать новую таблицу
+                    {t("profile.new-table")}
                 </div>
             </Link>
         </div >

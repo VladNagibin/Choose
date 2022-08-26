@@ -1,17 +1,19 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import Field from './Field'
 
 export default function JSONFields({ fields }) {
+    const { t } = useTranslation();
     function drawTable() {
         if (fields.length > 0) {
-            return (<div className='fields'><h2>Настройте поля карточек</h2><table>
+            return (<div className='fields'><h2>{t("new-table.JSON-settings.JSON-field.h2")}</h2><table>
                 <thead>
                     <tr>
-                        <th>Наименование</th>
-                        <th>Заголовок</th>
-                        <th>Показывать</th>
-                        <th>Сортировать</th>
-                        <th>Ключ</th>
+                        <th>{t("new-table.JSON-settings.JSON-field.name")}</th>
+                        <th>{t("new-table.JSON-settings.JSON-field.header")}</th>
+                        <th>{t("new-table.JSON-settings.JSON-field.show")}</th>
+                        <th>{t("new-table.JSON-settings.JSON-field.sort")}</th>
+                        <th>{t("new-table.JSON-settings.JSON-field.key")}</th>
                     </tr>
                 </thead>
                 <tbody>
