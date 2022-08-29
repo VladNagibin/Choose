@@ -27,9 +27,9 @@ export default function MainPage() {
       <OpenDivRight className='how-to'>
         <h1>{t("main-page.how-to.h1")}</h1>
         <div className='how-to-banners'>
-          <img src='./how-to-1.png' />
-          <img src='./how-to-2.png' />
-          <img src='./how-to-3.png' />
+          <img src={t("pictures-folder")+'/how-to-1.png'} />
+          <img src={t("pictures-folder")+'/how-to-2.png'} />
+          <img src={t("pictures-folder")+'/how-to-3.png'} />
         </div>
         <div className='buttons'>
         <Link to='/docs/main' className='new-table'>
@@ -48,9 +48,9 @@ export default function MainPage() {
       <OpenDivLeft>
         <h1>{t("main-page.safety.h1")}</h1>
         <div className='safety'>
-          <img src='data.png' />
-          <img src='hash.png' />
-          <img src='open-source.png' className='open-source' onClick={() => {
+          <img src={t("pictures-folder")+'/data.png'} />
+          <img src={t("pictures-folder")+'/hash.png'} />
+          <img src={t("pictures-folder")+'/open-source.png'} className='open-source' onClick={() => {
             window.open('https://github.com/VladNagibin/Choose', '_blank');
           }} />
         </div>

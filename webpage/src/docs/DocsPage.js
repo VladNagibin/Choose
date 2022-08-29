@@ -1,30 +1,32 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom'
 
 export default function DocsPage() {
     const page = useParams().page
+    const { t } = useTranslation();
     //что это / как голосовать /как создать голосование / как редактировать голосование // как скачать данные
     function drawMain() {
         return <div className='main'>
-            <h2>Choose это инструмент для создания голосований</h2>
+            <h2>{t("docs.main.h2")}</h2>
             <div className='picture'>
-                <img src='/table-help.png' />
+                <img src={'/' + t("pictures-folder") + '/table-help.png'} />
             </div>
             <div className='description'>
                 <ul>
-                    <li>Количество для выбора:</li>
-                    Количество карточек которые пользователю будет необходимо выбрать
-                    <li>Кнопка настроек:</li>
-                    Открывает и закрывает панель настроек. Доступна только создателю голосования
-                    <li>Карточки:</li>
-                    Массив данных, переданных при создании голосования. Карточка недоступна если ее выбрало максимум людей.<br /> Недоступные карточки можно скрыть или снять ограничение в панели настроек
-                    <li>Поля данных:</li>
-                    Устанавливаются при создании голосования. Можно менять в панели настроек.
+                    <li>{t("docs.main.li1")}</li>
+                    {t("docs.main.li1-data")}
+                    <li>{t("docs.main.li2")}</li>
+                    {t("docs.main.li2-data")}
+                    <li>{t("docs.main.li3")}</li>
+                    {t("docs.main.li3-data")}
+                    <li>{t("docs.main.li4")}</li>
+                    {t("docs.main.li4-data")}
                 </ul>
             </div>
             <Link to='/docs/howToVote' className='new-table'>
                 <div className='new-table-href docs-button'>
-                    Как голосовать
+                    {t("docs.how-to-vote.header")}
                 </div>
             </Link>
         </div>
@@ -32,25 +34,26 @@ export default function DocsPage() {
 
     function drawHowToVote() {
         return <div className='main'>
-            <h2>Как голосовать</h2>
+            <h2>{t("docs.how-to-vote.header")}</h2>
             <div className='picture'>
-                <img src='/table-how-to-vote.png' />
+                <img src={'/' + t("pictures-folder") + '/table-how-to-vote.png'} />
             </div>
             <div className='description'>
                 <ol>
-                    <li>Посмотри в левый верхний угол</li>
-                    Там указано сколько карточек необходимо выбрать для этого голосования
-                    <li>Заполни свои данные</li>
-                    В центре находятся поля для данных. Необходимо их оставить чтобы понять что этот голос твой
-                    <li>Выбери понравившиеся карточки</li>
-                    Ниже находятся карточки для выбора. Выбери самые крутые из них кроме серых, их уже выбрал кто-то другой
-                    <li>Нажми кнопку подтвердить</li>
-                    Твой голос сохранится и создатель голосования обязательно его учтет
+                    <li>{t("docs.how-to-vote.li1")}</li>
+                    {t("docs.how-to-vote.li1-data")}
+                    <li>{t("docs.how-to-vote.li2")}</li>
+                    {t("docs.how-to-vote.li2-data")}
+                    <li>{t("docs.how-to-vote.li3")}</li>
+                    {t("docs.how-to-vote.li3-data")}
+                    <li>{t("docs.how-to-vote.li4")}</li>
+                    {t("docs.how-to-vote.li4-data")}
+
                 </ol>
             </div>
             <Link to='/docs/howToCreate' className='new-table'>
                 <div className='new-table-href docs-button'>
-                    Как создать голосование
+                    {t("docs.how-to-create.header")}
                 </div>
             </Link>
         </div>
@@ -58,45 +61,45 @@ export default function DocsPage() {
 
     function drawHowToCreate() {
         return <div className='create'>
-            <h2>Как создать голосование</h2>
+            <h2>{t("docs.how-to-create.header")}</h2>
             <div className='steps'>
                 <ol>
-                    <li>Зарегистрироваться и войти в аккаунт</li>
-                    У каждого голосования должен быть владелец. Для этого есть прекрасные кнопки в правом верхнем углу
-                    <li>Нажать кнопку создать в левом верхнем углу</li>
-                    После этого ты попадаешь на страницу создания голосования
-                    <li>Загрузить свои данные в JSON или в Excel</li>
-                    Форматы указаны ниже:
+                    <li>{t("docs.how-to-create.li1")}</li>
+                    {t("docs.how-to-create.li1-data")}
+                    <li>{t("docs.how-to-create.li2")}</li>
+                    {t("docs.how-to-create.li2-data")}
+                    <li>{t("docs.how-to-create.li3")}</li>
+                    {t("docs.how-to-create.li3-data")}
                     <div className='formats'>
                         <div className='JSON'>
                             <img src='/json-format.png' />
                             <div>
-                                keyField:обязательно чтобы одно из значений было уникальным, его далее надо будет отметить как ключ, название у такого поля может быть любым
+                                {t("docs.how-to-create.JSON")}
                             </div>
                         </div>
                         <div className='Excel'>
                             <img src='/excel-format.png' />
                             <div>
-                                В экселе обязательно, чтобы страница с данными называлась "Data". Также необходимо поле с уникальным значением. Первая строка это названия столбцов, затем их значения
+                                {t("docs.how-to-create.Excel")}
                             </div>
                         </div>
                     </div>
-                    <li>Установить настройки голосования</li>
+                    <li>{t("docs.how-to-create.li4")}</li>
                     <div className='settings'>
                         <div className='text'>
-                            <div>Сначала надо настроить поля карточек, для уникального поля установи пункт "ключ", задай заголовки, (именно так поля будут подписываться в карточке), отметь поля, которые будут показываться и по каким полям сортировать</div>
-                            <div>Затем добавь поля для пользователей. В поле "Имя" впиши под каким ключом данные будут сохранятся, в поле "Заголовок" под каким ключом показываться голосующему, и в 3 поле укажи тип данных</div>
-                            <div>И последнее это общие настройки. Тут надо задать название голосования, его описание, количество карточек для выбора, ограничение по пользователям на карточку и скрывать ли заполненные карточки(они в любом случае будут недоступны)</div>
-                            <div>Когда все готово тыкай создать таблицу, она откроется и найти ее всегда можно у себя в профиле, осталось только отправить ссылку всем кому это интересно. Настройки можно поменять в любой момент так что ничего страшного если что-то указано неправильно</div>
+                            <div>{t("docs.how-to-create.li4-data.div1")}</div>
+                            <div>{t("docs.how-to-create.li4-data.div2")}</div>
+                            <div>{t("docs.how-to-create.li4-data.div3")}</div>
+                            <div>{t("docs.how-to-create.li4-data.div4")}</div>
                         </div>
-                        <img src='/settings.png' />
+                        <img src={'/' + t("pictures-folder") + '/settings.png'} />
                     </div>
 
                 </ol>
             </div>
             <Link to='/docs/howToChange' className='new-table'>
                 <div className='new-table-href docs-button'>
-                    Как изменить голосование
+                {t("docs.how-to-change.header")}
                 </div>
             </Link>
         </div>
@@ -104,32 +107,32 @@ export default function DocsPage() {
 
     function drawHowToChange() {
         return <div className='create'>
-            <h2>Как редактировать голосование</h2>
+            <h2>{t("docs.how-to-change.header")}</h2>
             <div className='steps'>
                 <ol>
-                    <li>Войти в аккаунт создателя голосования</li>
-                    Только создатель голосования может менять настройки
-                    <li>Открыть голосование</li>
-                    Его можно найти в профиле либо открыть по прямой ссылке
-                    <li>Нажать на кнопку настроек</li>
-                    Она находится в верхнем правом углу и есть только у создателя голосования
-                    <li>Изменить настройки голосования</li>
+                    <li>{t("docs.how-to-change.li1")}</li>
+                    {t("docs.how-to-change.li1-data")}
+                    <li>{t("docs.how-to-change.li2")}</li>
+                    {t("docs.how-to-change.li2-data")}
+                    <li>{t("docs.how-to-change.li3")}</li>
+                    {t("docs.how-to-change.li3-data")}
+                    <li>{t("docs.how-to-change.li4")}</li>
                     <div className='settings'>
                         <div className='text'>
-                            <div>Попадаем на уже знакомую панель настроек с двумя дополнительными кнопками сверху, нажав на одну из них скачаются результаты голосования в выбранном формате.Подробнее об этом написано в следующем пункте документации</div>
-                            <div>Затем идут настройки карточек, ключ поменять нельзя, но зато все остальные настройки меняются</div>
-                            <div>Затем идут поля для пользователей. Можно добавить или удалить, но пользователи, которые голосовали до изменений останутся в данных со старыми полями</div>
-                            <div>И последнее это общие настройки. Тут меняется все, единственный момент что если поставить ограничение меньше, чем уже есть в карточке, то голоса оттуда никуда не денутся и карточка останется переполненной</div>
-                            <div>Когда все готово тыкай сохранить изменения, Изменения внесутся как у тебя, так и у всех пользователей которые будут открывать голосование. Закрыть панель можно на ту же кнопку что и открыть</div>
+                            <div>{t("docs.how-to-change.li4-data.div1")}</div>
+                            <div>{t("docs.how-to-change.li4-data.div2")}</div>
+                            <div>{t("docs.how-to-change.li4-data.div3")}</div>
+                            <div>{t("docs.how-to-change.li4-data.div4")}</div>
+                            <div>{t("docs.how-to-change.li4-data.div5")}</div>
                         </div>
-                        <img src='/settings-panel.png' />
+                        <img src={'/' + t("pictures-folder") + '/settings-panel.png'} />
                     </div>
 
                 </ol>
             </div>
             <Link to='/docs/howToDownload' className='new-table'>
                 <div className='new-table-href docs-button'>
-                    Подробнее про данные
+                    {t("docs.how-to-change.button")}
                 </div>
             </Link>
         </div>
@@ -137,17 +140,17 @@ export default function DocsPage() {
 
     function drawHowToDownload() {
         return <div className='create'>
-            <h2>Как скачать данные</h2>
+            <h2>{t("docs.how-to-download.header")}</h2>
             <div className='steps'>
                 <ol>
-                    <li>Войти в аккаунт создателя голосования</li>
-                    Только создатель голосования может скачивать данные
-                    <li>Открыть голосование</li>
-                    Его можно найти в профиле либо открыть по прямой ссылке
-                    <li>Нажать на кнопку настроек</li>
-                    Она находится в верхнем правом углу и есть только у создателя голосования
-                    <li>Нажать на кнопку скачать JSON или скачать Excel</li>
-                    Формат файлов с результатами показан ниже:
+                    <li>{t("docs.how-to-download.li1")}</li>
+                    {t("docs.how-to-download.li1-data")}
+                    <li>{t("docs.how-to-download.li2")}</li>
+                    {t("docs.how-to-download.li2-data")}
+                    <li>{t("docs.how-to-download.li3")}</li>
+                    {t("docs.how-to-download.li3-data")}
+                    <li>{t("docs.how-to-download.li4")}</li>
+                    {t("docs.how-to-download.li4-data")}
                     <div className='settings final-data'>
                         <img className='final-json' src='/final-data-json.png' />
                         <img src='/final-data-excel.png' />
@@ -173,22 +176,22 @@ export default function DocsPage() {
     }
     return (
         <div className='docs'>
-            <h1>Документация</h1>
+            <h1>{t("documentation")}</h1>
             <div className='content'>
                 <Link to='/docs/main' className={page == 'main' ? 'chosen' : ''}>
-                    Что это
+                    {t("docs.main.header")}
                 </Link>
                 <Link to='/docs/howToVote' className={page == 'howToVote' ? 'chosen' : ''}>
-                    Как голосовать
+                    {t("docs.how-to-vote.header")}
                 </Link>
                 <Link to='/docs/howToCreate' className={page == 'howToCreate' ? 'chosen' : ''}>
-                    Как создать голосование
+                    {t("docs.how-to-create.header")}
                 </Link>
                 <Link to='/docs/howToChange' className={page == 'howToChange' ? 'chosen' : ''}>
-                    Как редактировать голосование
+                    {t("docs.how-to-change.header")}
                 </Link>
                 <Link to='/docs/howToDownload' className={page == 'howToDownload' ? 'chosen' : ''}>
-                    Как скачать данные
+                    {t("docs.how-to-download.header")}
                 </Link>
             </div>
             {drawPage()}

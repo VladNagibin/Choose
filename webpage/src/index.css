@@ -180,6 +180,24 @@ body {
   height: 100%;
 }
 
+.language {
+  background-color: #c8f9fd;
+  display: flex;
+}
+.language div {
+  text-transform: uppercase;
+  margin: 0px 10px 0px 10px;
+}
+.language button {
+  color: blanchedalmond;
+  background-color: #af7474;
+  border: 0px;
+  transition-duration: 250ms;
+}
+.language button:hover {
+  background-color: #875a5a;
+}
+
 .app {
   background-color: blanchedalmond;
 }

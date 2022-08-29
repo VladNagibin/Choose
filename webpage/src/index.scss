@@ -15,7 +15,23 @@ body {
   margin: 0px;
   height: 100%;
 }
-
+.language{
+  background-color: $color-3;
+  display: flex;
+  div{
+    text-transform: uppercase;
+    margin: 0px 10px 0px 10px ;
+  }
+  button{
+    color: $main-color;
+    background-color: $color-2;
+    border: 0px;
+    transition-duration: 250ms;
+  }
+  button:hover{
+    background-color: $button-hover;
+  }
+}
 .app {
   background-color: $main-color;
 

@@ -88,10 +88,80 @@
             "save-settings": "Save settings"
         }
     },
+    "pictures-folder":"en-pictures",
     "notifications":{
 
     },
     "docs":{
-
+        "main":{
+            "header":"What is it",
+            "li1":"Num to choose:",
+            "li1-data":"Quantity of cards that user need to choose",
+            "li2":"Settings button:",
+            "li2-data":"Open and close settings panel. Available only to vote's creater",
+            "li3":"Cards:",
+            "li3-data":"Data array that was uploaded in vote creation. Card is unavailable if maximum of users choose it.You can hide unavailable cards or remove the limit",
+            "li4":"Data fields:",
+            "li4-data":"Set when creating a vote. Can be changed in settings panel",
+            "h2":"Choose is an instrument to create a votes"
+        },
+        "how-to-vote":{
+            "header":"How to vote",
+            "li1":"Look at the top left corner",
+            "li1-data":"There are shown number of cards that you need to choose",
+            "li2":"Fill your data",
+            "li2-data":"In the middle located a data fields. You need to fill them so we can identify your vote",
+            "li3":"Choose the most liked cards",
+            "li3-data":"Below you can see a cards. Choose the coolest of them except gray, someone already pick them",
+            "li4":"Press apply button",
+            "li4-data":"Your vote will be saved and the creator of the vote will definitely take it into account"
+        },
+        "how-to-create":{
+            "JSON":"keyField:Your data must have one field with unique data and that field should be chosen as key field. That field can have any name",
+            "Excel":"In Excel list with data should be called \"Data\". Also you need a keyField as in JSON. First row should be fields names and then their values",
+            "header": "How to create a vote",
+            "li1": "Register and enter in account",
+            "li1-data": "Every vote should have a creator. We have these pretty buttons in top right corner to do that",
+            "li2": "Press button \" Create\" in top left corner",
+            "li2-data": "After that you will be on creating page",
+            "li3": "Upload your data in JSON or in Excel",
+            "li3-data": "Below you can see a formats:",
+            "li4": "Set vote's settings",
+            "li4-data": {
+                "div1":"First of all you need to set cards settings, to unique field set \"key\", then enter headers, (your fields will be shown to users with that names), set fields that we need to show and how we need to sort your data",
+                "div2":"Then add user fields. In field \"name\" enter how we should save user data and in field \"Header\" how we should show it to user and in third field what type of data will it be",
+                "div3":"And the last is general settings. There you need to set name of the vote, description, quantity of cards to choose, users limit in one card and do we need to hide filled cards(they will be unable anyway)",
+                "div4":"After everything is done press create vote, it will open and can always be found in your profile, send a link to it to people that need to vote. Settings can be changed in any time so it's okay if something is set incorrectly"
+            }    
+        },
+        "how-to-change":{
+            "header": "How to change a vote",
+            "li1": "Enter in vote's creator account",
+            "li1-data": "Only vote's creator can change vote settings",
+            "li2": "Open vote",
+            "li2-data": "You can find it in your profile or by a link",
+            "li3": "Press settings button",
+            "li3-data": "Only vote's creator have it. Located in top right corner",
+            "li4": "Change vote settings",
+            "li4-data": {
+                "div1":"We get to the already familiar settings panel with two additional buttons on top, clicking on one of them will download the voting results in the selected format. More about this is written in the next paragraph of the documentation",
+                "div2":"Then there are card settings, the key cannot be changed, but all other settings can be changed",
+                "div3":"Then there are fields for users. You can add or remove, but users who voted before the changes will remain in the data with the old fields",
+                "div4":"And the last one is the general settings. Everything changes here, the only point is that if you set the limit less than what is already in the card, then the votes from there will not go anywhere and the card will remain crowded",
+                "div5":"When everything is ready, click save the changes. The changes will be made both for you and for all users who will open the vote. You can close the panel on the same button as open it."
+            },
+            "button":"More about data"
+        },
+        "how-to-download":{
+            "header":"How to download data",
+            "li1": "Enter in vote's creator account",
+            "li1-data": "Only vote's creator can change vote settings",
+            "li2": "Open vote",
+            "li2-data": "You can find it in your profile or by a link",
+            "li3": "Press settings button",
+            "li3-data": "Only vote's creator have it. Located in top right corner",
+            "li4": "Press download JSON or download Excel button",
+            "li4-data": "Below your can see files formats:"
+        }
     }
 }
