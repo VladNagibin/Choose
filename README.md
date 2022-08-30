@@ -13,7 +13,7 @@
                         <li>Settings button:</li>
                         Open and close settings panel. Available only to vote's creater
                         <li>Cards:</li>
-                        Data array that was uploaded in vote creation. Card is unavailable if maximum of users choose
+                        Data array that was uploaded in vote creation. Can be uploaded as JSON or as Excel. Card is unavailable if maximum of users choose
                         it.You can hide unavailable cards or remove the limit
                         <li>Data fields:</li>
                         Set when creating a vote. Can be changed in settings panel
