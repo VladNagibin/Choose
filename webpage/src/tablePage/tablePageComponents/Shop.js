@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import { t } from 'i18next'
+import React, { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 export default function Shop({ cardData, regInCard, declineCard, fields, keyField, settings }) {
     const [chosed, setChosed] = useState(false)
     const [card, setCard] = useState(cardData)
-    const available = () => {
+    const available = useCallback(() => {
         var unavailable = ('freePlaces' in cardData && cardData.freePlaces < 1)
         console.log(unavailable)
         console.log(cardData)
         return !unavailable 
 
-    }
+    },[cardData])
 
     async function chose() {
         // console.log(cardData)
@@ -61,7 +62,7 @@ export default function Shop({ cardData, regInCard, declineCard, fields, keyFiel
                     if (available()) {
                         chose()
                     }else{
-                        toast.warn('В этой карточке нет свободных мест')
+                        toast.warn(t("notifications.no-places"))
                     }
                 }} id={cardData[keyField]}>
                     {

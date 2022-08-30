@@ -36,9 +36,9 @@ export default function SetNewJSON() {
     reader.onloadend = () => {
       try {
         SetData(JSON.parse(reader.result))
-        toast.success('JSON обработан')
+        toast.success(t("notifications.JSON-set"))
       } catch {
-        toast.error('Невалидный JSON')
+        toast.error(t("notifications.invalid-JSON"))
       }
     }
     reader.readAsText(file)
@@ -50,9 +50,9 @@ export default function SetNewJSON() {
     reader.onloadend = () => {
       try {
         SetData(readExcel(reader.result))
-        toast.success('Excel обработан')
+        toast.success(t("notifications.JSON-set"))
       } catch (e) {
-        toast.error('Невалидный Excel')
+        toast.error(t("notifications.invalid-JSON"))
       }
     }
     reader.readAsArrayBuffer(file)

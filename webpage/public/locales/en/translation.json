@@ -1,10 +1,11 @@
 {
-    "test":"penis",
     "header":{
         "home":"Home",
         "create":"Create",
         "account":"Account",
-        "out":"Out"
+        "out":"Out",
+        "login":"Login",
+        "registration":"Registration"
     },
     "documentation":"Documentation",
     "main-page":{
@@ -70,7 +71,7 @@
         "tables":"Your tables",
         "cards-chosen":"Cards chosen",
         "new-table":"Create new table",
-        "no votes":"No votes yet"
+        "no-votes":"No votes yet"
     },
     "auth":{
         "login":"Login",
@@ -90,7 +91,20 @@
     },
     "pictures-folder":"en-pictures",
     "notifications":{
-
+        "out":"You are logged out",
+        "enter":"You are entered in account",
+        "registration":"Account successfully created",
+        "still-dev":"Still in developing",
+        "copied":"Copied!",
+        "fill-all-fields":"Fill all fields",
+        "JSON-set":"JSON set",
+        "invalid-JSON":"invalid JSON",
+        "Excel-set":"Excel set",
+        "invalid-Excel":"invalid Excel",
+        "no-places":"There is no free places in this card",
+        "enough-elements":"You are already choose enough cards",
+        "not-enough-elements":"Choose more ",
+        "thank-you":"Thank you for your vote"
     },
     "docs":{
         "main":{

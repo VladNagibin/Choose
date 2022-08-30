@@ -49,7 +49,7 @@ export default function TablePage() {
   function select(card) {
     // alert(event.target.name)
     if (selected.length == settings.settings.toChoose && settings.settings.toChoose != 0) {
-      toast.warn('Вы выбрали достаточно элементов')
+      toast.warn(t("notifications.enough-elements"))
       return false
     }
     var newCards = selected
@@ -90,11 +90,11 @@ export default function TablePage() {
       }
     }
     if (!dataIsFilled) {
-      toast.warn("Заполните данные о себе")
+      toast.warn(t("notifications.fill-all-fields"))
       return false
     }
     if (selected.length < settings.settings.toChoose) {
-      toast.warn("Выберите еще " + (settings.settings.toChoose - selected.length))
+      toast.warn(t("notifications.not-enough-elements") + (settings.settings.toChoose - selected.length))
       return false
     }
     //alert(shop.id)
@@ -111,7 +111,7 @@ export default function TablePage() {
       return false
     }
     getData()
-    toast.success("Cпасибо за участие")
+    toast.success(t("notifications.thank-you"))
     navigate('/')
     return true
   }

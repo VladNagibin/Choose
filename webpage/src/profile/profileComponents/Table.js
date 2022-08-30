@@ -19,7 +19,7 @@ export default function Table({ table }) {
                 <input ref={clipboard.target} value={'http://choose-votes.ru/table/' + table.id} readOnly></input>
                 <button title='Скопировать' onClick={() => {
                     clipboard.copy()
-                    toast.info('Ссылка скопирована')
+                    toast.info(t("notifications.copied"))
                 }}><span className="material-symbols-outlined material-icons">
                         content_copy
                     </span></button>

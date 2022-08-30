@@ -1,10 +1,11 @@
 {
-    "test": "хуй",
     "header": {
         "home": "Домой",
         "create": "Создать",
         "account": "Аккаунт",
-        "out": "Выйти"
+        "out": "Выйти",
+        "login":"Вход",
+        "registration":"Регистрация"
     },
     "documentation": "Документация",
     "main-page": {
@@ -69,7 +70,8 @@
         "hello": "Здравствуйте",
         "tables": "Ваши таблицы",
         "cards-chosen": "Карточек выбрано",
-        "new-table": "Создать новую таблицу"
+        "new-table": "Создать новую таблицу",
+        "no-votes":"Пока нету ни одного голосования"
     },
     "auth": {
         "login": "Логин",
@@ -88,7 +90,22 @@
         }
     },
     "pictures-folder": "rus-pictures",
-    "notifications": {},
+    "notifications": {
+        "out":"Вы вышли из аккаунта",
+        "enter":"Вы вошли в аккаунт",
+        "registration":"Аккаунт успешно создан",
+        "still-dev":"Еще в разработке)",
+        "copied":"Ссылка скопирована",
+        "fill-all-fields":"Заполните все поля",
+        "JSON-set":"JSON обработан",
+        "invalid-JSON":"невалидный JSON",
+        "Excel-set":"Excel обработан",
+        "invalid-Excel":"невалидный Excel",
+        "no-places":"В этой карточке нет свободных мест",
+        "enough-elements":"Вы выбрали достаточно элементов",
+        "not-enough-elements":"Выбери еще ",
+        "thank-you":"Спасибо за ваш голос"
+    },
     "docs": {
         "main": {
             "header": "Что это",

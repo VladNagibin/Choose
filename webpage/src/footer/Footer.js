@@ -15,7 +15,7 @@ export default function Footer() {
             }}>
                 Github
             </div>
-            <div onClick={()=>toast.info('Еще в разработке)')}>
+            <div onClick={()=>toast.info(t("notifications.still-dev"))}>
                 API
             </div>
             <Link to='/docs/main'>

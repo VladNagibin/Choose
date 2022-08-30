@@ -19,7 +19,7 @@ export default function RegistrationPage() {
     async function regUser() {
         try {
             var data = await request('/auth/registration', 'POST', form)
-            toast.success(data.message)
+            toast.success(t("notifications.registration"))
             navigate('/login')
         } catch (e) {
             toast.error(error)

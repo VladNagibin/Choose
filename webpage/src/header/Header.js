@@ -28,7 +28,7 @@ export default function Header() {
                     </span></Link>
                     <a><span className="material-symbols-outlined material-icons" onClick={() => {
                         logout()
-                        toast.info('Вы вышли из аккаунта')
+                        toast.info(t("notifications.out"))
                     }}>
                         logout<div className='icons-hover'>{t("header.out")}</div>
                     </span></a>
@@ -41,7 +41,7 @@ export default function Header() {
             <div className='header'>
                 <div className='buttons'>
                     <Link to={'/'}><span className="material-symbols-outlined material-icons">
-                    <div className='icons-hover'>Домой</div>home
+                    <div className='icons-hover'>{t("header.home")}</div>home
                     </span></Link>
                 </div>
                 <div>
@@ -49,10 +49,10 @@ export default function Header() {
                 </div>
                 <div className='buttons'>
                     <Link to={'/login'}><span className="material-symbols-outlined material-icons">
-                    <div className='icons-hover'>Вход</div>login
+                    <div className='icons-hover'>{t("header.login")}</div>login
                     </span></Link>
                     <Link to={'/registration'}><span className="material-symbols-outlined material-icons">
-                        app_registration<div className='icons-hover'>Регистрация</div>
+                        app_registration<div className='icons-hover'>{t("header.registration")}</div>
                     </span></Link>
                 </div>
 

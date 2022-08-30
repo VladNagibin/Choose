@@ -18,7 +18,7 @@ export default function LoginPage() {
         var data = await request('/auth/login', 'POST', form)
         try {
             login(data.token, data.userId)
-            toast.success('Вы вошли в аккаунт')
+            toast.success(t("notifications.enter"))
             navigate('/')
         } catch (e) {
             toast.error(data.message)

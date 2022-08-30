@@ -47,7 +47,6 @@ export default function JSONSettings({ data, fields }) {
 
     const formHandler = event => {
         SetForm({ ...form, [event.target.name]: event.target.value })
-        console.log(event.target)
     }
 
     function handleAddUserField() {
@@ -55,7 +54,7 @@ export default function JSONSettings({ data, fields }) {
         const header = userFieldHeaderRef.current.value
         const type = userFieldTypeRef.current.value
         if (name == "" || type == "") {
-            toast.warn('Заполните оба поля')
+            toast.warn(t("notifications.fill-all-fields"))
             return
         }
         SetUserFields(prevUserFields => {
