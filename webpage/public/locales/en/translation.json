@@ -50,6 +50,7 @@
                     "date":"Date",
                     "checkbox":"Checkbox",
                     "email":"Email",
+                    "phone":"Phone",
                     "color":"Color"
                 },
                 "add-button":"Add",
@@ -62,7 +63,8 @@
                 "to-choose":"How much to choose(0=inf)",
                 "max-in-card":"Max users in one card(0=inf)",
                 "hide-filled":"Hide fields with max num of users",
-                "new-table":"Create new table"
+                "new-table":"Create new table",
+                "save-settings":"Save settings"
             }
         }
     },

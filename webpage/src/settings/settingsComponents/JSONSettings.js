@@ -103,6 +103,7 @@ export default function JSONSettings({ data, fields }) {
                     <select ref={userFieldTypeRef} >
                         {/* <option disabled>Тип данных</option> */}
                         <option value='text'>{t("new-table.JSON-settings.user-fields.options.text")}</option>
+                        <option value='phone'>{t("new-table.JSON-settings.user-fields.options.phone")}</option>
                         <option value='number'>{t("new-table.JSON-settings.user-fields.options.number")}</option>
                         <option value='data'>{t("new-table.JSON-settings.user-fields.options.date")}</option>
                         <option value='checkbox'>{t("new-table.JSON-settings.user-fields.options.checkbox")}</option>

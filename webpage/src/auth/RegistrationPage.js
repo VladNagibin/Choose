@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useHttp } from '../hooks/http.hook'
 
-
 export default function RegistrationPage() {
     const { request, loading, error, CleanErrors } = useHttp()
     const navigate = useNavigate()
@@ -26,6 +25,8 @@ export default function RegistrationPage() {
             CleanErrors()
         }
     }
+
+    
     return (
         <div className='container'>
             <div className='authefication'>
@@ -36,6 +37,7 @@ export default function RegistrationPage() {
                     <div className='form'>
                         <input type='text' name='login' value={form.login} onChange={changeForm} placeholder={t('auth.login')}></input>
                         <input type='password' name='password' value={form.password} onChange={changeForm} placeholder={t('auth.password')}></input>
+                       
                         <button disabled={loading} onClick={regUser}>{t('auth.register')}</button>
                     </div>
 

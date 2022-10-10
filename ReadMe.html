@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=853px, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>Readme</title>
+    <style>
+        * {
+            font-family: "Roboto";
+        }
+
+        .app {
+            background-color: blanchedalmond;
+        }
+
+        .docs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .docs a {
+            text-decoration: none;
+            color: black;
+            transition-duration: 250ms;
+        }
+
+        .docs a:hover {
+            font-size: 20px;
+        }
+
+        .docs .content {
+            width: 100%;
+            padding: 20px 0px 20px 0px;
+            background-color: #fadfb8;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .docs .content .chosen {
+            font-size: 20px;
+        }
+
+        .docs .main {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (max-width: 1200px) {
+            .docs .main {
+                width: 70%;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .docs .main {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .docs .main {
+                width: 90%;
+            }
+        }
+
+        .docs .main .picture {
+            border: 6px white solid;
+            border-radius: 20px;
+            max-width: 90%;
+        }
+
+        .docs .main .picture img {
+            max-width: 100%;
+        }
+
+        .docs .main .description {
+            text-align: left;
+        }
+
+        .docs .main .description li {
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="docs">
+            <div className='main'>
+                <h2>Choose is an instrument to create a votes</h2>
+                <div className='picture'>
+                    <img src='http://choose-votes.ru/en-pictures/table-help.png' />
+                </div>
+                <div className='description'>
+                    <ul>
+                        <li>Num to choose:</li>
+                        Quantity of cards that user need to choose
+                        <li>Settings button:</li>
+                        Open and close settings panel. Available only to vote's creater
+                        <li>Cards:</li>
+                        Data array that was uploaded in vote creation. Card is unavailable if maximum of users choose
+                        it.You can hide unavailable cards or remove the limit
+                        <li>Data fields:</li>
+                        Set when creating a vote. Can be changed in settings panel
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

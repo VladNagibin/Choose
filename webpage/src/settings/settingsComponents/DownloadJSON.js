@@ -30,7 +30,7 @@ export default function DownloadJSON({ tableId }) {
     data.forEach(el=>{
       newData.push({
         ...el,
-        usersInShop:JSON.stringify(el.usersInShop)
+        usersInCard:JSON.stringify(el.usersInCard)
       })
     })
     const worksheet = XLSX.utils.json_to_sheet(newData);

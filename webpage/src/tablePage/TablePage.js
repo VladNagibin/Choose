@@ -37,6 +37,7 @@ export default function TablePage() {
     settings: {},
     isAdmin: false
   })
+  const [hideAcceptPanel, setHideAcceptPanel] = useState(true)
   const tableId = useParams().id
   const keyField = getKeyField()
   function getKeyField() {
@@ -121,6 +122,7 @@ export default function TablePage() {
     }
   }
 
+
   function drawSettings() {
     if (settings.isAdmin) {
       return <SettingsPanel settings={settings} settingsHandler={settingsHandler} tableId={tableId} />
@@ -181,7 +183,20 @@ export default function TablePage() {
 
           {drawSettings()}
         </div>
-        <SlideLeftDiv><ChooseForm acceptShops={accept} userFields={settings.userFields} /></SlideLeftDiv>
+        
+        <SlideLeftDiv><ChooseForm acceptShops={()=>setHideAcceptPanel(false)} userFields={settings.userFields} /></SlideLeftDiv>
+        {
+          hideAcceptPanel?<></>:<div className='accept-panel'>
+          <div>
+           Вы уверены?
+          </div>
+          <div>
+            <button onClick={accept}>Да</button>
+            <button onClick={()=>setHideAcceptPanel(true)}>Скрыть</button>
+          </div>
+        </div>
+        }
+        
         <BottomSlideDiv>
           {drawCards()}
         </BottomSlideDiv>

@@ -79,9 +79,9 @@ export default function Settings({ fields, userFields, settings, settingsHandler
         userFieldHeaderRef.current.value = ''
     }
     function deleteUserField(id) {
-        var newUserFields = [...newUserFields]
-        var index = newUserFields.findIndex(el => el.id = id)
-        SetUserFields([...newUserFields.slice(0, index), ...newUserFields.slice(index + 1)])
+        var changedUserFields = [...newUserFields]
+        var index = changedUserFields.findIndex(el => el.id == id)
+        SetUserFields([...changedUserFields.slice(0, index), ...changedUserFields.slice(index + 1)])
     }
     function hideFilledHandler() {
         SetForm({ ...form, hideFilled: !form.hideFilled })
@@ -106,6 +106,7 @@ export default function Settings({ fields, userFields, settings, settingsHandler
                         <select ref={userFieldTypeRef} >
                             {/* <option disabled>Тип данных</option> */}
                             <option value='text'>{t("new-table.JSON-settings.user-fields.options.text")}</option>
+                            <option value='phone'>{t("new-table.JSON-settings.user-fields.options.phone")}</option>
                             <option value='number'>{t("new-table.JSON-settings.user-fields.options.number")}</option>
                             <option value='date'>{t("new-table.JSON-settings.user-fields.options.date")}</option>
                             <option value='checkbox'>{t("new-table.JSON-settings.user-fields.options.checkbox")}</option>
@@ -140,7 +141,7 @@ export default function Settings({ fields, userFields, settings, settingsHandler
                         </div>
                         {/* <input name='key' type='radio' value={form.toChoose} onChange={formHandler} /> */}
                     </div>
-                    <button className='createNewTable' onClick={SaveSettings}>{t("new-table.JSON-settings.last-settings.new-table")}</button>
+                    <button className='createNewTable' onClick={SaveSettings}>{t("new-table.JSON-settings.last-settings.save-settings")}</button>
                 </>
             )
         } else {

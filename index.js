@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const chooseRouter = require('./Routers/choose')
 const settingsRouter = require('./Routers/settings')
 const authRouter = require('./Routers/auth')
+const https = require("https")
 const app = express()
 require('dotenv').config()
 const path = require('path')
@@ -25,6 +26,8 @@ if (process.env.NODE_ENV == 'production') {
 async function start() {
     try {
         await mongoose.connect(process.env.DB_CONN)
+        //await https.createServer(app).listen(PORT)
+        console.log(`server was started on port ${PORT}` )
         app.listen(PORT, () => {
             console.log('Back works on ' + PORT)
         })

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
+import InputMask from 'react-input-mask';
+
 
 export default function ChooseForm({ acceptShops,userFields }) {
     const [form, setform] = useState({})
@@ -25,6 +27,9 @@ export default function ChooseForm({ acceptShops,userFields }) {
         <div className='form choose-form'>
             {
                 userFields.map(field=>{
+                    if(field.type=='phone'){
+                        return <InputMask mask="+7(999) 999-99-99" key={field.name} placeholder={field.header} name={field.name} value={form[field.name]?form[field.name]:''} onChange={formHandler} />
+                    }
                     return <input key={field.name} type={field.type} placeholder={field.header} name={field.name} value={form[field.name]?form[field.name]:''} onChange={formHandler}></input>
                 })
             }

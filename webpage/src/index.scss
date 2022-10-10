@@ -1035,3 +1035,46 @@ a{
     margin-bottom: 50px;
   }
 }
+
+.accept-panel{
+  animation: accept-panel 0.5s;
+  margin: auto;
+  margin-bottom: 20px;
+  background-color: $footer-header;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 100px;
+  font-size: 20px;
+  button{
+    transition: 0.3s;
+    cursor: pointer;
+    width: 100px;
+    background-color: $color-2;
+    border: $color-2 solid 1px;
+    border-radius: 20px;
+    color:$footer-header;
+    height: 30px;
+    margin: 10px;
+  }
+  button:hover{
+    background-color: $button-hover;
+  }
+}
+
+@keyframes accept-panel {
+  0%{
+    height: 30px;
+    font-size: 0px;
+    margin-bottom: 0px;
+  }
+  100%{
+    margin-bottom: 20px;
+    height: 100px;
+    font-size: 20px;
+  }
+}
