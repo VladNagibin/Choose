@@ -257,7 +257,14 @@ a{
     flex-direction: column;
     align-items: center;
     background-color: $main-color;
-
+    .what-to-download{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      label{
+        margin-right: 10px;
+      }
+    }
     .format {
       font-size: 20px;
       cursor: pointer;

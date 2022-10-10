@@ -88,6 +88,7 @@
         "download": {
             "JSON": "Скачать JSON",
             "Excel": "Скачать Excel",
+            "Only-with-votes": "Только с голосами",
             "save-settings": "Сохранить изменения"
         }
     },

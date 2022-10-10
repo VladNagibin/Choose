@@ -67,7 +67,7 @@ export default function Shop({ cardData, regInCard, declineCard, fields, keyFiel
                 }} id={cardData[keyField]}>
                     {
                         fields.filter(elem => elem.show == true).map(field => {
-                            return <div key={field.name}>{field.header} : {card[field.name]}</div>
+                            return <div key={field.name}>{field.header==''?'':`${field.header} :`}  {card[field.name]}</div>
                         })
                     }
                     {freePlaces()}

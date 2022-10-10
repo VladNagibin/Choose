@@ -385,6 +385,14 @@ a {
   align-items: center;
   background-color: blanchedalmond;
 }
+.settings .set-new-json .what-to-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.settings .set-new-json .what-to-download label {
+  margin-right: 10px;
+}
 .settings .set-new-json .format {
   font-size: 20px;
   cursor: pointer;

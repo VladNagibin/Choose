@@ -88,6 +88,7 @@
         "download": {
             "JSON": "Download JSON",
             "Excel": "Download Excel",
+            "Only-with-votes": "Only with votes",
             "save-settings": "Save settings"
         }
     },
